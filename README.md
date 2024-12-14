@@ -15,7 +15,7 @@ All data required for Spiller and Chinese astrology are already under
 `data`.  Lewi data needs decans, which are already under `data`, if
 there is need to regenerate it, see under `jlewi`.
 
-Usage:
+### Usage
 
 ```python
 import astromaestro
@@ -34,7 +34,14 @@ astromaestro.calculate_lewi(astromaestro.conv("10/3/1968"))
 Out[1]: [136, 161, 163, 183, 196, 199, 211, 214, 216, 235, 243, 246, 272, 276]
 ```
 
-Refer to the book on the details of these readings.
+Refer to the books in the Reference section on the details of these
+readings.
+
+The Lewi and SwissEph codes can be compiled, jarred using the
+`build.py` script. Compiling is `python build.py build-lewi`, jarring
+requires `jar`. To generate decans `gen-decans` target is necessary,
+user can also generate a combined json file containing all readings,
+per date via `gen-combined`.
 
 ### Lewi
 
