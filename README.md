@@ -11,6 +11,10 @@ detailed informatio. The accuracy of this reading can be quite
 shocking. Lastly Millman numerology, another detailed method that can
 reveal character is shared. Chinese astrology is the bonus.
 
+All data required for Spiller and Chinese astrology are already under
+`data`.  Lewi data needs decans, which are already under `data`, if
+there is need to regenerate it, see under `jlewi`.
+
 Usage:
 
 ```python
@@ -30,17 +34,24 @@ astromaestro.calculate_lewi(astromaestro.conv("10/3/1968"))
 Out[1]: [136, 161, 163, 183, 196, 199, 211, 214, 216, 235, 243, 246, 272, 276]
 ```
 
-Refer to the book on the details of these readings. 
+Refer to the book on the details of these readings.
+
+### Lewi
+
+Grant Lewi calculation requires decan data, which must be precalculated
+and placed under `data`. See [jlewi](jlewi) for details.
 
 ### Millman
 
-This is numerology, can be quite predictive for certain things. It can
-also report a cycle number which is the period your life path is on;
-according to his method life proceeds in 9 year cycles, 1 is time to
-start something 9 to enjoy its fruits (and not start something
-new). An interesting exercise; starting from the cycle you are at
-today, go back in time, year by year; i.e. if current cycle point says
-4, and the current year is 2015,
+This is numerology. The calculation is done via straigh addition on the
+individual digits of the birthdate.
+
+Millman approach can also calculate a cycle number which is the period
+your life path is on; according to his method life proceeds in 9 year
+cycles, 1 is time to start something 9 to enjoy its fruits (and not
+start something new). An interesting exercise; starting from the cycle
+you are at today, go back in time, year by year; i.e. if current cycle
+point says 4, and the current year is 2015,
 
 ```
 2010 8
@@ -65,11 +76,11 @@ Out[1]: 3
 and try to remember the state of your life at those moments in
 time, especially at year 1. The results can be revealing.
 
-### Features
+### Vedic
 
-All data required for Spiller and Chinese astrology are already under `data`.
-Lewi data needs decans, which are already under `data`, if there is need to
-regenerate it, see under `jlewi`.
+Using SwissEph we are able to calculate Vedic ascending, sun, moon signs
+using the Java code under [swisseph](jlewi/src/java/swisseph). See the
+`VedicTest.java` code for details.
 
 ### Summary
 
