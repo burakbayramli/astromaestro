@@ -73,7 +73,7 @@ regenerate it, see under `jlewi`.
 
 ### Summary
 
-In sum, `mindmeld` calculates the following:
+The project calculates the following:
 
 * Grant Lewi Numbers (based on decans)
 
@@ -82,8 +82,6 @@ In sum, `mindmeld` calculates the following:
 * Jan Spiller Moon North Node Astrology
 
 * Chinese Astrology
-
-* Myers-Briggs Test
 
 References
 
