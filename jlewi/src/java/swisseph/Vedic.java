@@ -18,9 +18,9 @@ public class Vedic {
     private static final String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
 						"Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"};
     
-    public void getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
-	double hour = time + (0. / 60.) + greenwichOffset; // IST
-				
+    public String getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
+
+	double hour = time + (0. / 60.) + greenwichOffset; // IST				
 	SwissEph sw = new SwissEph();
 	SweDate sd = new SweDate(year, month, day, hour);
 	System.out.println(sd.getDate(0).toString());
@@ -32,10 +32,11 @@ public class Vedic {
 	StringBuffer serr = new StringBuffer();
 
 	double ayanamsa = sw.swe_get_ayanamsa_ut(sd.getJulDay());
-	int flags;
+	int flags = SweConst.SEFLG_SIDEREAL;
+	int result = sw.swe_houses(sd.getJulDay(), flags, latitude, longitude, 'P', cusps, acsc);
 
 	int ascSign = (int) (acsc[0] / 30) + 1;
-	System.out.println("Ascendant Sign: " + signNames[ascSign-1] + "\n");
+	String ascOut = signNames[ascSign-1];
 	
 	flags = SweConst.SEFLG_SWIEPH | // fastest method, requires data files
 	    SweConst.SEFLG_SIDEREAL | // sidereal zodiac
@@ -54,15 +55,16 @@ public class Vedic {
 	planetName = sw.swe_get_planet_name(planet);
 	ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
 	sign = (int) (xp[0] / 30) + 1;
-	System.out.println(planetName);
-	System.out.println(signNames[sign-1]);
+	String sunOut = signNames[sign-1];
 
 	planet = SweConst.SE_MOON; // Moon
 	planetName = sw.swe_get_planet_name(planet);
 	ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
 	sign = (int) (xp[0] / 30) + 1;
-	System.out.println(planetName);
-	System.out.println(signNames[sign-1]);
+	String moonOut = signNames[sign-1];
+
+	String output = String.format("{'ascending': '%s', 'sun': '%s', 'moon': '%s'}", ascOut, sunOut, moonOut);
+	return output;
     }
 
     public static void main(String[] args) {
@@ -74,7 +76,8 @@ public class Vedic {
 	double time = 10;
 	double greenwichOffset = -3;
 	Vedic v = new Vedic();
-	v.getReading(day, month, year, latitude, longitude, time, greenwichOffset);
+	String res = v.getReading(day, month, year, latitude, longitude, time, greenwichOffset);
+	System.out.println(res);	
     }
 	
 	
