@@ -8,13 +8,21 @@
   <body>
     <script>
       cheerpjInit();
-      cheerpjRunJar("/app/static/MyLib.jar");
+      cheerpjRunJar("/app/static/astromaestro.jar");
 
       async function doit() {
-      let obj = await cjNew("com.example.Example");
-      var res = await cjCall(obj, "calc","aaaaa");
-      var s2 = String.fromCharCode.apply(null, res.value0);
-      console.log(s2);      
+
+  	    year = 1973;
+	      month = 4;
+	      day = 24;
+	      longitude = 32.85646943314241;
+	      latitude = 39.941139297390365;
+	      time = 10;
+	      greenwichOffset = -3;      
+        let obj = await cjNew("swisseph.Vedic");      
+        var res = await cjCall(obj, "getReading",day, month, year, latitude, longitude, time, greenwichOffset);
+        var s2 = String.fromCharCode.apply(null, res.value0);
+        console.log(s2);      
      }
       
     </script>
