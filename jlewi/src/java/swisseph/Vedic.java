@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.Arrays;
 
 public class Vedic {
-
-    private static final int SID_METHOD = SweConst.SE_SIDM_LAHIRI;
-    private static final String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
-						"Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"};
     
     public String getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
 
+	int SID_METHOD = SweConst.SE_SIDM_LAHIRI;
+	String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
+			       "Libra","Scorpio","Sagittarius","Capricorn","Aquarius",
+			       "Pisces"};
+
+	
 	double hour = time + (0. / 60.) + greenwichOffset; // IST				
 	SwissEph sw = new SwissEph();
 	SweDate sd = new SweDate(year, month, day, hour);
@@ -58,7 +60,7 @@ public class Vedic {
 	return output;
     }
 
-    public static void main(String[] args) {
+    public static void test() {
 	int year = 1973;
 	int month = 4;
 	int day = 24;
@@ -68,6 +70,11 @@ public class Vedic {
 	double greenwichOffset = -3;
 	Vedic v = new Vedic();
 	String res = v.getReading(day, month, year, latitude, longitude, time, greenwichOffset);
-	System.out.println(res);	
+	System.out.println(res);		
+    }
+    
+    public static void main(String[] args) {
+	System.out.println("Vedic Ready");
+	//test();
     }
 }
