@@ -5,15 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Arrays;
 
-/**
- * This class is an example of how to calculate planets and houses in the indian
- * vedic style of astrology (jyotish).
- */
 public class Vedic {
 
-    /**
-     * The method to determine ayanamsha value:
-     */
     private static final int SID_METHOD = SweConst.SE_SIDM_LAHIRI;
     private static final String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
 						"Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"};
@@ -23,7 +16,6 @@ public class Vedic {
 	double hour = time + (0. / 60.) + greenwichOffset; // IST				
 	SwissEph sw = new SwissEph();
 	SweDate sd = new SweDate(year, month, day, hour);
-	System.out.println(sd.getDate(0).toString());
 	sw.swe_set_sid_mode(SID_METHOD, 0, 0);
 
 	double[] cusps = new double[13];
@@ -38,12 +30,11 @@ public class Vedic {
 	int ascSign = (int) (acsc[0] / 30) + 1;
 	String ascOut = signNames[ascSign-1];
 	
-	flags = SweConst.SEFLG_SWIEPH | // fastest method, requires data files
-	    SweConst.SEFLG_SIDEREAL | // sidereal zodiac
-	    SweConst.SEFLG_NONUT | // will be set automatically for sidereal
-	    // calculations, if not set here
-	    SweConst.SEFLG_SPEED; // to determine retrograde vs. direct
-	// motion
+	flags = SweConst.SEFLG_SWIEPH | 
+	    SweConst.SEFLG_SIDEREAL | 
+	    SweConst.SEFLG_NONUT | 
+	    SweConst.SEFLG_SPEED;
+
 	int sign;
 	int house;
 	boolean retrograde = false;
@@ -79,8 +70,4 @@ public class Vedic {
 	String res = v.getReading(day, month, year, latitude, longitude, time, greenwichOffset);
 	System.out.println(res);	
     }
-	
-	
-    
 }
-
