@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Vedic {
     
-    public static String getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
+    public String getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
 
 	int SID_METHOD = SweConst.SE_SIDM_LAHIRI;
 	String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
@@ -68,13 +68,13 @@ public class Vedic {
 	double latitude = 39.941139297390365;
 	double time = 10;
 	double greenwichOffset = -3;
-	Vedic v = new Vedic();
-	String res = v.getReading(day, month, year, latitude, longitude, time, greenwichOffset);
+	String res = getReading(day, month, year, latitude, longitude, time, greenwichOffset);
 	System.out.println(res);		
     }
     
     public static void main(String[] args) {
 	System.out.println("Vedic Ready");
-	//test();
+	Vedic v = new Vedic();
+	v.test();
     }
 }
