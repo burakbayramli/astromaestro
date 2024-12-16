@@ -24,32 +24,19 @@ public class Vedic {
 	SwissEph sw = new SwissEph();
 	SweDate sd = new SweDate(year, month, day, hour);
 	System.out.println(sd.getDate(0).toString());
-	// Set sidereal mode:
 	sw.swe_set_sid_mode(SID_METHOD, 0, 0);
 
-	// Some required variables:
 	double[] cusps = new double[13];
 	double[] acsc = new double[10];
 	double[] xp = new double[6];
 	StringBuffer serr = new StringBuffer();
 
-	// Get and print ayanamsa value for info:
 	double ayanamsa = sw.swe_get_ayanamsa_ut(sd.getJulDay());
-
-	// Get and print lagna:
-	int flags = SweConst.SEFLG_SIDEREAL;
-	int result = sw.swe_houses(sd.getJulDay(), flags, latitude, longitude, 'P', cusps, acsc);
+	int flags;
 
 	int ascSign = (int) (acsc[0] / 30) + 1;
 	System.out.println("Ascendant Sign: " + signNames[ascSign-1] + "\n");
-
-	// Calculate all planets:
-	int[] planets = { SweConst.SE_SUN, SweConst.SE_MOON, SweConst.SE_MARS, SweConst.SE_MERCURY, SweConst.SE_JUPITER,
-			  SweConst.SE_VENUS, SweConst.SE_SATURN, SweConst.SE_TRUE_NODE }; // Some
-	// systems
-	// prefer
-	// SE_MEAN_NODE
-
+	
 	flags = SweConst.SEFLG_SWIEPH | // fastest method, requires data files
 	    SweConst.SEFLG_SIDEREAL | // sidereal zodiac
 	    SweConst.SEFLG_NONUT | // will be set automatically for sidereal
@@ -63,14 +50,14 @@ public class Vedic {
 	String planetName;
 	int ret;
 	
-	planet = planets[0]; // Sun
+	planet = SweConst.SE_SUN; // Sun
 	planetName = sw.swe_get_planet_name(planet);
 	ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
 	sign = (int) (xp[0] / 30) + 1;
 	System.out.println(planetName);
 	System.out.println(signNames[sign-1]);
 
-	planet = planets[1]; // Moon
+	planet = SweConst.SE_MOON; // Moon
 	planetName = sw.swe_get_planet_name(planet);
 	ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
 	sign = (int) (xp[0] / 30) + 1;
