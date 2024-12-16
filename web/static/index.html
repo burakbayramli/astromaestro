@@ -19,8 +19,11 @@
 	      latitude = 39.941139297390365;
 	      time = 10;
 	      greenwichOffset = -3;      
-        let obj = await cjNew("swisseph.Vedic");      
-        var res = await cjCall(obj, "getReading", 24, 4, 1973, 39.941139297390365, 32.85646943314241, 10, -3);
+        //let obj = await cjNew("swisseph.Vedic");      
+        let obj = await cjNew("org.jlewi.DummyMain");      
+        //var res = await cjCall(obj, "getReading", 24, 4, 1973, 39.941139297390365, 32.85646943314241, 10, -3);
+        await cjCall(obj, "test");
+        //var res = await cjCall(obj, "sayHello");
         //var s2 = String.fromCharCode.apply(null, res.value0);
         //console.log(s2);
         console.log(res);

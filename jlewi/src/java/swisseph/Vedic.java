@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Vedic {
     
-    public String getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
+    public static String getReading(int day, int month, int year, double latitude, double longitude, double time, double greenwichOffset) {
 
 	int SID_METHOD = SweConst.SE_SIDM_LAHIRI;
 	String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
@@ -60,7 +60,7 @@ public class Vedic {
 	return output;
     }
 
-    public static void test() {
+    public void test() {
 	int year = 1973;
 	int month = 4;
 	int day = 24;
