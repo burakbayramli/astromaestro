@@ -1,14 +1,15 @@
 # Astro Maestro
 
-This project aims to combine numerology, psychology, and
-astrology. Most people know about sun signs (Capricorn, Taurus, etc)
+This project aims to combine numerology, psychology, astrology, and
+numerology. Most people know about sun signs (Capricorn, Taurus, etc)
 which gives 1 out of 12 possibilities. One method we show here uses
 (by G. Lewi) all sun and moon combinations, 12x12 = 144 character
-possibilities. Grant Lewi method also looks at other planetary
+descriptions. Grant Lewi method also looks at other planetary
 combinations that can supply more in-depth information. Jan Spiller
 looks at moon readings differently; the result is another detailed
-reading. Lastly Millman numerology, another in-depth method that can
-reveal character is shared. Chinese astrology is the bonus.
+reading. Millman numerology, another in-depth method that can reveal
+detailed character attributes is also shared. Chinese and Vedic
+astrology are the bonus additions.
 
 All data required for Spiller and Chinese astrology are already under
 `data`.  Lewi data needs decans, which are already under `data`, if
@@ -86,7 +87,7 @@ time, especially at year 1. The results can be revealing.
 
 Using SwissEph we are able to calculate Vedic ascending, sun, moon signs
 using the Java code under [swisseph](jlewi/src/java/swisseph). See the
-`VedicTest.java` code for details.
+`Vedic.java` or `VedicTest.java` codes for details.
 
 References
 
