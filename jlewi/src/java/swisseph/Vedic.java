@@ -64,7 +64,6 @@ public class Vedic {
 	output += String.format("'%s': ['%s',%d]", planetName,signNames[sign-1],house);
 
 	output += "}";	
-	//String output = String.format("{'ascending': '%s', 'sun': '%s', 'moon': '%s'}", ascOut, sunOut, moonOut);
 	return output;
     }
 
@@ -87,9 +86,11 @@ public class Vedic {
 	double time = Double.valueOf(args[3]);
 	double latitude = Double.valueOf(args[4]);
 	double longitude = Double.valueOf(args[5]);
-	double offset = Double.valueOf(args[6]);
-	System.out.printf("Java received %d %d %d %f %f %f %f", day,mon,year,time,latitude,longitude,offset);
-	return "";
+	double greenwichOffset = -1 * Double.valueOf(args[6]);
+	//System.out.printf("Java received %d %d %d %f %f %f %f", day,mon,year,time,latitude,longitude,offset);
+	String res = getReading(day, mon, year, latitude, longitude, time, greenwichOffset);
+	//System.out.println(res);		
+	return res;
     }
     
     public static void main(String[] args) {
