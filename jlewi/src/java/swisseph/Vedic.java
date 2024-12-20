@@ -40,23 +40,31 @@ public class Vedic {
 	int sign;
 	int house;
 	boolean retrograde = false;
-	int planet;
-	String planetName;
-	int ret;
+	String output = "{";
+
+	output += "'Ascending': ['" + ascOut + "'],";
 	
-	planet = SweConst.SE_SUN; // Sun
-	planetName = sw.swe_get_planet_name(planet);
-	ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
-	sign = (int) (xp[0] / 30) + 1;
-	String sunOut = signNames[sign-1];
+	int[] planets = { SweConst.SE_SUN, SweConst.SE_MOON, SweConst.SE_MARS, SweConst.SE_MERCURY, SweConst.SE_JUPITER,
+			  SweConst.SE_VENUS, SweConst.SE_SATURN, SweConst.SE_TRUE_NODE }; // Some
 
-	planet = SweConst.SE_MOON; // Moon
-	planetName = sw.swe_get_planet_name(planet);
-	ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
-	sign = (int) (xp[0] / 30) + 1;
-	String moonOut = signNames[sign-1];
+	for (int p = 0; p < planets.length; p++) {
+	    int planet = planets[p];
+	    String planetName = sw.swe_get_planet_name(planet);
+	    int ret = sw.swe_calc_ut(sd.getJulDay(), planet, flags, xp, serr);
+	    sign = (int) (xp[0] / 30) + 1;
+	    house = (sign + 12 - ascSign) % 12 + 1;
+	    retrograde = (xp[3] < 0);
+	    output += String.format("'%s': ['%s',%d],", planetName,signNames[sign-1],house);
+	}
 
-	String output = String.format("{'ascending': '%s', 'sun': '%s', 'moon': '%s'}", ascOut, sunOut, moonOut);
+	xp[0] = (xp[0] + 180.0) % 360;
+	String planetName = "Ketu (true)";
+	sign = (int) (xp[0] / 30) + 1;
+	house = (sign + 12 - ascSign) % 12 + 1;
+	output += String.format("'%s': ['%s',%d]", planetName,signNames[sign-1],house);
+
+	output += "}";	
+	//String output = String.format("{'ascending': '%s', 'sun': '%s', 'moon': '%s'}", ascOut, sunOut, moonOut);
 	return output;
     }
 
@@ -71,10 +79,22 @@ public class Vedic {
 	String res = getReading(day, month, year, latitude, longitude, time, greenwichOffset);
 	System.out.println(res);		
     }
+
+    public String getReading(String[] args) {
+	int day = Integer.valueOf(args[0]);
+	int mon = Integer.valueOf(args[1]);
+	int year = Integer.valueOf(args[2]);
+	double time = Double.valueOf(args[3]);
+	double latitude = Double.valueOf(args[4]);
+	double longitude = Double.valueOf(args[5]);
+	double offset = Double.valueOf(args[6]);
+	System.out.printf("Java received %d %d %d %f %f %f %f", day,mon,year,time,latitude,longitude,offset);
+	return "";
+    }
     
     public static void main(String[] args) {
-	System.out.println("Vedic Ready");
 	Vedic v = new Vedic();
 	v.test();
+	//v.getReading(args);
     }
 }
