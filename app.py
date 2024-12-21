@@ -9,16 +9,13 @@ app = Flask(__name__)
 @app.route('/vedic', methods=["PUT", "POST"])
 def vedic():
     data = request.get_json(force=True)
-    print ('data',data)
-
     tf = TimezoneFinder() 
     today = datetime.datetime.now()
     tz_target = timezone(tf.certain_timezone_at(lng=32.94905410633718, lat=39.774503259632304))
     today_target = tz_target.localize(today)
     today_utc = utc.localize(today)
     offset = (today_utc - today_target).total_seconds() / 3600
-    offset = str(offset)
-    
+    offset = str(offset)    
     pydir = os.path.dirname(os.path.abspath(__file__))    
     # these two jars are needed for Vedic Java call
     os.environ['CLASSPATH'] = pydir + "/astromaestro.jar:" + \
@@ -26,7 +23,6 @@ def vedic():
     p = subprocess.Popen(['java','swisseph.Vedic',data['day'],data['mon'],data['year'],data['hour'],data['lat'],data['lon'],offset],
                           stdout=subprocess.PIPE)
     res = p.stdout.read().decode().strip()
-    print (res)
     return res
 
 
