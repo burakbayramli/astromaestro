@@ -15,7 +15,7 @@ All data required for Spiller and Chinese astrology are already under
 `data`.  Lewi data needs decans, which are already under `data`, if
 there is need to regenerate it, see under `jlewi`.
 
-### Usage
+## Usage
 
 ```python
 import astromaestro
@@ -88,6 +88,33 @@ time, especially at year 1. The results can be revealing.
 Using SwissEph we are able to calculate Vedic ascending, sun, moon signs
 using the Java code under [swisseph](jlewi/src/java/swisseph). See the
 `Vedic.java` or `VedicTest.java` codes for details.
+
+## Web
+
+Vedic reading can be calculated via a simple Web application. Install
+Flask
+
+```
+pip install flask
+```
+
+And a Java JDK (`javac` should be executable from the command prompt,
+under any directory), on Ubuntu,
+
+```
+sudo apt install default-jdk
+```
+
+Now you could simply run Flash with
+
+```
+python app.py
+```
+
+Connect to http://localhost5000/static/index.html it will show the
+main screen for Vedic input. Make sure `astromaestro.jar` exists
+before starting the application.
+
 
 References
 
