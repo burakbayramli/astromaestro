@@ -87,7 +87,9 @@ time, especially at year 1. The results can be revealing.
 
 Using SwissEph we are able to calculate Vedic ascending, sun, moon signs
 using the Java code under [swisseph](jlewi/src/java/swisseph). See the
-`Vedic.java` or `VedicTest.java` codes for details.
+`Vedic.java` or `VedicTest.java` codes for details. Both of these Java
+programs can be run via `build.py test-vedic` and `build.py test-vedic2`
+respectively.
 
 ## Web
 
