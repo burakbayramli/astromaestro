@@ -11,9 +11,9 @@ reading. Millman numerology, another in-depth method that can reveal
 detailed character attributes is also shared. Chinese and Vedic
 astrology are the bonus additions.
 
-All data required for Spiller and Chinese astrology are already under
-`data`.  Lewi data needs decans, which are already under `data`, if
-there is need to regenerate it, see under `jlewi`.
+All data required for Spiller and Chinese astrology are in under
+`data/decans.dat`.  Lewi data needs decans, which are already under
+`data`, if there is need to regenerate it, see `jlewi`.
 
 ## Usage
 
@@ -39,14 +39,9 @@ readings.
 
 The Lewi and SwissEph codes can be compiled, jarred using the
 `build.py` script. Compiling is `python build.py build-lewi`, jarring
-requires calling of the `jar` target. To generate decans `gen-decans`
-target is necessary, user can also generate a combined json file
-containing all readings per date via `gen-combined`.
-
-### Lewi
-
-Grant Lewi calculation requires decan data, which must be precalculated
-and placed under `data`. See [jlewi](jlewi) for code details.
+requires calling `jar`. To generate decans use `gen-decans`, user can
+also generate a combined json file containing all readings per date
+via `gen-combined`.
 
 ### Millman
 
