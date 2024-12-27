@@ -95,7 +95,8 @@ public class Vedic {
     
     public static void main(String[] args) {
 	Vedic v = new Vedic();
-	v.test();
-	//v.getReading(args);
+	//v.test();
+	String res = v.getReading(args);
+	System.out.println(res); 
     }
 }
