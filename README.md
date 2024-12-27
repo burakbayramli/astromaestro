@@ -38,7 +38,7 @@ Refer to the books in the Reference section on the details of these
 readings.
 
 The Lewi and SwissEph codes can be compiled, jarred using the
-`build.py` script. Compiling is `python build.py build-lewi`, jarring
+`build.py` script. Compiling is `python build.py compile`, jarring
 requires calling `jar`. To generate decans use `gen-decans`, user can
 also generate a combined json file containing all readings per date
 via `gen-combined`.
