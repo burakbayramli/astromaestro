@@ -84,7 +84,25 @@ Using SwissEph we are able to calculate Vedic ascending, sun, moon signs
 using the Java code under [swisseph](jlewi/src/java/swisseph). See the
 `Vedic.java` or `VedicTest.java` codes for details. Both of these Java
 programs can be run via `build.py test-vedic` and `build.py test-vedic2`
-respectively.
+respectively. A simple test Python code for Vedic is below,
+
+```python
+import os, datetime, subprocess, json
+cp = 'jlewi/lib/commons-lang3-3.13.0.jar:astromaestro.jar'
+
+p = subprocess.Popen(['java','-classpath',cp,'swisseph.Vedic','14','6','1946','11','40.70','-73.79','-5'],
+                      stdout=subprocess.PIPE)
+res = p.stdout.read().decode().strip()
+res = res.replace("'",'"')
+res = json.loads(res)
+print (res)
+```
+
+```text {'Ascending': ['Leo'], 'Sun': ['Taurus', 10], 'Moon':
+['Scorpio', 4], 'Mars': ['Leo', 1], 'Mercury': ['Gemini', 11],
+'Jupiter': ['Virgo', 2], 'Venus': ['Cancer', 12], 'Saturn': ['Cancer',
+12], 'true Node': ['Taurus', 10], 'Ketu (true)': ['Scorpio', 4]}
+```
 
 ## Web
 
