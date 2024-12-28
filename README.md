@@ -98,10 +98,11 @@ res = json.loads(res)
 print (res)
 ```
 
-```text {'Ascending': ['Leo'], 'Sun': ['Taurus', 10], 'Moon':
-['Scorpio', 4], 'Mars': ['Leo', 1], 'Mercury': ['Gemini', 11],
-'Jupiter': ['Virgo', 2], 'Venus': ['Cancer', 12], 'Saturn': ['Cancer',
-12], 'true Node': ['Taurus', 10], 'Ketu (true)': ['Scorpio', 4]}
+```text
+{'Ascending': ['Leo'], 'Sun': ['Taurus', 10], 'Moon': ['Scorpio', 4],
+'Mars': ['Leo', 1], 'Mercury': ['Gemini', 11], 'Jupiter': ['Virgo',
+2], 'Venus': ['Cancer', 12], 'Saturn': ['Cancer', 12], 'true Node':
+['Taurus', 10], 'Ketu (true)': ['Scorpio', 4]}
 ```
 
 ## Web
