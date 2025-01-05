@@ -1,9 +1,9 @@
 # Astro Maestro
 
-This project aims to combine numerology, psychology, astrology, and
-numerology. Most people know about sun signs (Capricorn, Taurus, etc)
-which gives 1 out of 12 possibilities. One method we show here uses
-(by G. Lewi) all sun and moon combinations, 12x12 = 144 character
+This project aims to combine numerology, psychology, and
+astrology. Most know about sun signs (Capricorn, Taurus, etc) which
+gives 1 out of 12 possibilities. One method we show here uses (by
+G. Lewi) all sun and moon combinations, 12x12 = 144 character
 descriptions. Grant Lewi method also looks at other planetary
 combinations that can supply more in-depth information. Jan Spiller
 looks at moon readings differently; the result is another detailed
