@@ -1,15 +1,15 @@
 # Astro Maestro
 
-This project aims to combine numerology, psychology, and
-astrology. Most know about sun signs (Capricorn, Taurus, etc) which
-gives 1 out of 12 possibilities. One method we show here uses (by
-G. Lewi) all sun and moon combinations, 12x12 = 144 character
-descriptions. Grant Lewi method also looks at other planetary
-combinations that can supply more in-depth information. Jan Spiller
-looks at moon readings differently; the result is another detailed
-reading. Millman numerology, another in-depth method that can reveal
-detailed character attributes is also shared. Chinese and Vedic
-astrology are the bonus additions.
+This project has usable routines to calculate numerology, Western and
+Vedic astrology readings. For the Western approach the codes go beyond
+the basic sun signs (Capricorn, Taurus, etc) which gives 1 out of 12
+possibilities. One method we show here uses (by G. Lewi) all sun and
+moon combinations, 12x12 = 144 character descriptions. Grant Lewi
+method also looks at other planetary combinations that can supply more
+in-depth information. Jan Spiller looks at moon readings differently;
+the result is another detailed reading. Millman numerology, another
+in-depth method that can reveal detailed character attributes is also
+shared. Chinese and Vedic astrology are the bonus additions.
 
 All data required for Spiller and Chinese astrology are in under
 `data/decans.dat`.  Lewi data needs decans, which are already under
@@ -80,11 +80,13 @@ time, especially at year 1. The results can be revealing.
 
 ### Vedic
 
-Using SwissEph we are able to calculate Vedic ascending, sun, moon signs
-using the Java code under [swisseph](jlewi/src/java/swisseph). See the
-`Vedic.java` or `VedicTest.java` codes for details. Both of these Java
-programs can be run via `build.py test-vedic` and `build.py test-vedic2`
-respectively. A simple test Python code for Vedic is below,
+Using SwissEph we are able to calculate Vedic ascending, sun, moon
+signs using the Java code under
+[swisseph](jlewi/src/java/swisseph). See the `Vedic.java` or
+`VedicTest.java` codes for details. Both of these Java programs can be
+run via `build.py test-vedic` and `build.py test-vedic2`
+respectively. The code can be interfaced to via Python, an example is
+below,
 
 ```python
 import os, datetime, subprocess, json
@@ -107,8 +109,8 @@ print (res)
 
 ## Web
 
-Vedic reading can be calculated via a simple Web application. Install
-Flask
+Vedic reading can be calculated via a lightweight Web
+application. Install Flask
 
 ```
 pip install flask
