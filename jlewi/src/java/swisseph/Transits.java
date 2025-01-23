@@ -1,3 +1,4 @@
+package swisseph;
 /*
    The swisseph package used herein is a Java port of the Swiss Ephemeris
    of Astrodienst Zuerich, Switzerland. For copyright notices see the file
