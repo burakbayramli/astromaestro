@@ -24558,20 +24558,12 @@ static final boolean NUT_IAU_2000B       = true;
     this.swed=swed;
     if (this.swed ==null) { this.swed=new SwissData(); }
   }
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+
   public double square_sum(double x[]) {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
+
     return x[0]*x[0]+x[1]*x[1]+x[2]*x[2];
   }
   public double square_sum(double x[], int offset) {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
     return x[offset]*x[offset]+x[1+offset]*x[1+offset]+x[2+offset]*x[2+offset];
   }
   
@@ -25219,10 +25211,6 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
   
   
   public int swi_cutstr(String s, String cutlist, String cpos[], int nmax) {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
     s=s.trim();
     if (s.indexOf('\n')>=0) { s=s.substring(0,s.indexOf('\n')); }
     if (s.indexOf('\r')>=0) { s=s.substring(0,s.indexOf('\r')); }
@@ -25249,8 +25237,6 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     if (n < nmax) {
       cpos[n] = null;
     }
-////#ifdef TRACE0
-////#endif 
     return n;
   }       
   
@@ -25308,16 +25294,11 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
   }
   
   public String swi_gen_filename(SweDate sd, int ipli) {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
+
     int icty;
     int ncties = (int) SwephData.NCTIES;
     int sgn;
     String fname;
-////#ifdef ORIGINAL
-////#endif 
     switch(ipli) {
       case SwephData.SEI_MOON:
         fname="semo";
@@ -25350,8 +25331,6 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
         }
         fname = "ast" + ((ipli - SweConst.SE_AST_OFFSET) / 1000) +
                 swed.DIR_GLUE + "se" + iplNr + "." + SwephData.SE_FILE_SUFFIX;
-////#ifdef TRACE0
-////#endif 
         return fname;   
         
     }
@@ -25385,8 +25364,6 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     }
     icty = Math.abs(icty);
     fname+=(icty<10?"0":"")+icty+"."+SwephData.SE_FILE_SUFFIX;
-////#ifdef TRACE0
-////#endif 
     return fname;
   }
   
