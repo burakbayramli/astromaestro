@@ -1,4 +1,4 @@
-/// commons-lang3-3.13.0.jar is needed for compilation
+/** commons-lang3-3.13.0.jar is needed for compilation **/
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Arrays;
@@ -146,7 +146,7 @@ class CFmt {
 
       if (cv.type=='g' || cv.type=='G') { isG=true; }
 
-// Rounding is not accurate!!!
+
 double dval_tmp=dval; // postpone rounding
       // Rounding:
       // cv.precision:
@@ -198,7 +198,7 @@ double dval_tmp=dval; // postpone rounding
 
       // Zahl zerlegen in Integer-Anteil, Mantisse und Exponenten:
 //DevNull.println("\n@@@ "+Long.toBinaryString(Double.doubleToLongBits(dval)));
-//      res=Double.toString(dval);
+
 res=dblToString(dval,cv.precision); // Includes rounding!!!
 //DevNull.println(">>> "+res);
       exponent=res.indexOf(".")-1;
@@ -447,12 +447,12 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
     long exp, i, lMant;
     boolean nexp=false;
 
-// Fuer positive Zahlen gilt:
-// 2^(Exponent+1) + 2^Exponent * Mantisse / 2^51
+
+
 //
-// mit Exponent    = double_bitmap & 0x3ff0000000000000,
-// Exp. Vorzeichen = double_bitmap & 0x4000000000000000
-// und Mantisse    = double_bitmap & 0x000fffffffffffff
+
+
+
 //
 
     lMant=Double.doubleToLongBits(d)&0x000fffffffffffffL;
@@ -844,7 +844,6 @@ class FileData {
     try {
       if (fptr!=null) { fptr.close(); }
     } catch (java.io.IOException e) {
-// NBT
     }
     fptr=null;
     tfstart=0.0;
@@ -854,9 +853,9 @@ class FileData {
     for(j=0; j<SEI_FILE_NMAXPLAN; j++) { ipl[j]=0; }
   }
 
-// Attention: read_const() has to be called from "swed.fidat[ifno]", where
-// "ifno" has to be the first parameter in read_const:
-//  struct FileData *fdp = &swed.fidat[ifno];
+
+
+
 //
   
   int read_const(int ifno, StringBuffer serr, SwissData swed) {
@@ -899,7 +898,7 @@ class FileData {
         throw new SwissephException(tfstart, SwissephException.DATA_FILE_ERROR,
             SweConst.ERR, serr);
       }
-// Use SwissLib.atoi(...) ?
+
       fversion=ver;
 
       
@@ -1004,7 +1003,7 @@ lng = 0;
         throw new SwissephException(tfstart, SwissephException.DATA_FILE_ERROR,
             SweConst.ERR, serr);
       }
-//      fptr.seek(flen-1);
+
       fptr.seek(fpos);
       
       sweph_denum = read4(fptr, fpos, false, freord, fendian);
@@ -1440,32 +1439,32 @@ int kCnt;
 
 
 //////////////////////////////////////////////////////////////////////////////
-// Anmerkungen: //////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
-// String fnam;     Fuer Ausgaben von Fehlermeldungen und zum
-//                  Zwischenspeichern.
-// int fversion;    Wird nicht genutzt, aber aus der Datei ausgelesen.
-//                  Sollte zugreifbar sein.
-// String astnam;   Wird aus der Datei ausgelesen und in "swe_get_planet_name"
-//                  zurueckgeliefert.
-// int sweph_denum; Wird aus der Datei ausgelesen und in "sweph"
-//                  einmal genutzt (4 Bytes uebrigens):
-//                  if (fdp->sweph_denum >= 403 && ipl < SEI_ANYBODY) {
-//                    swi_IERS_FK5(xp, xp, 1);
-//                    [...]
-//                  }
-// java.io.RandomAccessFile fptr;
-// double tfstart;  Beginn und Ende des Zeitraumes, ueber den die Datei
-// double tfend;    Daten enthaelt. Wird ausgewertet.
-// int iflg;        Enthaelt zwei Flags in Bit 1 und Bit 2: "little endian /
-//                  big endian" und "reorder Bytes". sizeof(long), vermutlich
-//                  4 Bytes=int;
-// short npl;       Wird aus der Datei mit zwei Bytes ausgelesen. Anzahl der
-//                  Planeten in der Datei. Aufgrund dieser Information werden
-//                  "npl"-mal Konstanten ueber die Planeten aus der Datei
-//                  ausgelesen (PlanData p: p.lndx0; p.iflg; p.ncoe; p.rmax;
-//                  p.tfstart bis p.dperi; p.refep und FileData.ipl).
-// short ipl[];     2 Bytes==int. Offenbar Nummer der Planeten...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1589,8 +1588,8 @@ class FilePtr {
   
   public void close() throws IOException {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.close()");
+
+
 ////#endif 
     try {
       fnamp="";
@@ -1608,26 +1607,26 @@ class FilePtr {
         os=null;
       } catch (IOException ies) {
 ////#ifdef TRACE0
-//        Trace.level--;
+
 ////#endif 
         throw ies;
       }
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       throw ie;
     }
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
   }
 
   
   public long getFilePointer() {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.getFilePointer()");
-//    Trace.level--;
+
+
+
 ////#endif 
     return fpos;
   }
@@ -1635,13 +1634,13 @@ class FilePtr {
   
   public long length() throws IOException {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.length()");
+
+
 ////#endif 
     if (fp!=null && savedLength<0) { savedLength=fp.length(); }
     if (fp!=null || savedLength>=0) {
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
       return savedLength;
     }
@@ -1660,7 +1659,7 @@ class FilePtr {
       } catch (IOException ioe) {
         if (++failures>=MAX_FAILURES) {
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
           throw new IOException("(java.net.SocketException) "+ioe.getMessage());
         }
@@ -1671,7 +1670,7 @@ class FilePtr {
       if (rc<0) { // What has happened? Invalid header?
         if (++failures>=MAX_FAILURES) {
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
           throw new IOException("Failed to read a valid / complete header.");
         }
@@ -1687,13 +1686,13 @@ class FilePtr {
       len=Long.parseLong(sout);
     } else {
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       throw new IOException("Can't determine length of (HTTP-)file '"+fnamp+
                             "'. HTTP error code: "+rc);
     }
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
     return len;
   }
@@ -1701,9 +1700,9 @@ class FilePtr {
   
   public void seek(long pos) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.seek()");
-//    Trace.level--;
+
+
+
 ////#endif 
     fpos=pos;
   }
@@ -1711,15 +1710,15 @@ class FilePtr {
   
   void skipBytes(int count) throws IOException {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.skipBytes(int)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    count: " + count);
+
 ////#endif 
 ////#endif 
     if (fpos+count>=length()) {
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       throw new EOFException("Filepointer position "+(fpos+count)+" exceeds "+
                              "file length by "+(fpos+count-length()+1)+
@@ -1727,37 +1726,37 @@ class FilePtr {
     }
     fpos+=count;
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
   }
 
 
-// RFC 2068: Response = Status-Line
-//                      * ( general-header
-//                        | response-header
-//                        | entity-header )
-//                     CRLF
-//                     [ message-body ]
+
+
+
+
+
+
 //
-// Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
+
 //
-// Status-Code should (has to?) be 206
+
 //
 
 
   private String URLread(InputStream is) throws IOException {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.URLread(InputStream)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    is: " + is);
+
 ////#endif 
 ////#endif 
     StringBuffer sret=new StringBuffer("");
     int av = is.read();
     if (av == -1) {
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       throw new IOException("No bytes available.");
     }
@@ -1766,24 +1765,24 @@ class FilePtr {
       sret.append((char)is.read());
     }
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
     return sret.toString();
   }
 
   private void URLwrite(BufferedOutputStream os, String s) throws IOException {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.URLwrite(BufferedOutputStream, String)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    os: " + os + " \n    s: " + s);
+
 ////#endif 
 ////#endif 
     for(int n=0; n<s.length(); n++) {
       os.write((byte)s.charAt(n));
     }
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
     os.flush();
   }
@@ -1791,15 +1790,15 @@ class FilePtr {
   // Returns the data part of the html response in String s
   private String htmlStrip(String s) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.htmlStrip(String)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    s: " + s);
+
 ////#endif 
 ////#endif 
     int idx=s.indexOf("\r\n\r\n");
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
     if (idx>=0) {
       return s.substring(idx+4);
@@ -1810,23 +1809,23 @@ class FilePtr {
   // Returns the http return code or -1, if not available
   private int checkHeader(String s) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.checkHeader(String)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    s: " + s);
+
 ////#endif 
 ////#endif 
     try {
       int ix1=s.indexOf(" ");
       int ix2=s.indexOf(" ",ix1+1);
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       if (ix1<0 || ix2<0 || ix1<8 || ix1+4!=ix2) { return -1; }
       return Integer.parseInt(s.substring(ix1+1,ix2));
     } catch (NumberFormatException nf) {
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       return -1;
     }
@@ -1836,17 +1835,17 @@ class FilePtr {
   // Reads a chunk of data to the buffer data[][idx]
   private void readToBuffer() throws IOException, EOFException {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readToBuffer()");
+
+
 ////#endif 
     // Directly reading a file:
     if (fp!=null) { 
       fp.seek(fpos);
       int cnt=fp.read(inbuf);
-// Probably, RandomAccessFile.read(byte[n]) performes n read operations???
+
       if (cnt==-1) {
 ////#ifdef TRACE0
-//        Trace.level--;
+
 ////#endif 
         throw new EOFException("Filepointer position "+fpos+" exceeds file"+
                                " length by "+(fpos-length()+1)+" byte(s).");
@@ -1857,7 +1856,7 @@ class FilePtr {
       startIdx[idx]=fpos;
       endIdx[idx]=fpos+cnt-1;
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       return;
     }
@@ -1865,7 +1864,7 @@ class FilePtr {
     // Reading via http:
     if (fpos>=length()) {
 ////#ifdef TRACE0
-//      Trace.level--;
+
 ////#endif 
       throw new EOFException("Filepointer position "+fpos+" exceeds file "+
                              "length by "+(fpos-length()+1)+" byte(s).");
@@ -1885,7 +1884,7 @@ class FilePtr {
       } catch (IOException ioe) {
         if (++failures>=MAX_FAILURES) {
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
           throw new IOException("(java.net.SocketException) "+ioe.getMessage());
         }
@@ -1896,7 +1895,7 @@ class FilePtr {
       if (rc<0) { // What has happened?
         if (++failures>=MAX_FAILURES) { // Too many failures in a row, abort:
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
           throw new IOException("Failed to read successfully from address\n'"+
                                 fnamp+"'. The http reply from the server was "+
@@ -1912,7 +1911,7 @@ class FilePtr {
           (slen<BUFSIZE && savedLength>=0 && fpos+slen != savedLength)) {
         if (++failures>=MAX_FAILURES) {
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
           throw new IOException("HTTP read failed with HTTP response "+rc+
                                 ". Read "+slen+" bytes, requested "+BUFSIZE+
@@ -1923,7 +1922,7 @@ class FilePtr {
       if (slen==0) { // How is this to happen???
         if (++failures>=MAX_FAILURES) {
 ////#ifdef TRACE0
-//          Trace.level--;
+
 ////#endif 
           throw new EOFException("Filepointer position "+fpos+" exceeds file "+
                                  "length by "+(fpos-length()+1)+" byte(s).");
@@ -1938,13 +1937,13 @@ class FilePtr {
       data[n][idx]=(byte)sout.charAt(n);
     }
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
   }
 
   private void reconnect() throws IOException {
 ////#ifdef TRACE0
-//    DevNull.println(System.currentTimeMillis()+" FilePtr.reconnect()");
+
 ////#endif 
 System.err.println("reconnecting...");
     sk.close();
@@ -2351,7 +2350,7 @@ class Swecl {
         }
         for (i = 0; i < 10; i++)
           geopos[i] = 0;
-//    *dcore = 0;
+
         dcore[0] = 0;
         retc = 0;
         d = 0;
@@ -2384,7 +2383,7 @@ class Swecl {
         double ss= (1-eobl) * (1-eobl) * cc;
         earthobl =  ss;
         niter++;
-//      goto iter_where;
+
         continue;
       }
       sl.swi_polcart(xst, xst);
@@ -3053,14 +3052,14 @@ class Swecl {
           return 0;
         }
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       tret[0] = tjd;
       if ((backward!=0 && tret[0] >= tjd_start - 0.0001)
         || (backward==0 && tret[0] <= tjd_start + 0.0001)) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
@@ -3077,35 +3076,35 @@ class Swecl {
       
       if ((ifltype & SweConst.SE_ECL_NONCENTRAL)==0 && (retflag & SweConst.SE_ECL_NONCENTRAL)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
       if ((ifltype & SweConst.SE_ECL_CENTRAL)==0 && (retflag & SweConst.SE_ECL_CENTRAL)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
       if ((ifltype & SweConst.SE_ECL_ANNULAR)==0 && (retflag & SweConst.SE_ECL_ANNULAR)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
       if ((ifltype & SweConst.SE_ECL_PARTIAL)==0 && (retflag & SweConst.SE_ECL_PARTIAL)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
       if ((ifltype & (SweConst.SE_ECL_TOTAL | SweConst.SE_ECL_ANNULAR_TOTAL))==0 && (retflag & SweConst.SE_ECL_TOTAL)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       if (dont_times)
-//        goto end_search_global;
+
         return retflag;
       
       if ((retflag & SweConst.SE_ECL_PARTIAL)!=0)
@@ -3179,13 +3178,13 @@ class Swecl {
       
       if ((ifltype & SweConst.SE_ECL_TOTAL)==0 && (retflag & SweConst.SE_ECL_TOTAL)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
       if ((ifltype & SweConst.SE_ECL_ANNULAR_TOTAL)==0 && (retflag & SweConst.SE_ECL_ANNULAR_TOTAL)!=0) {
         t= tjd + direction * dadd;
-//    goto next_try;
+
         continue;
       }
       
@@ -3723,14 +3722,14 @@ class Swecl {
           return 0;
         }
         t = tjd + direction;
-//    goto next_try;
+
         continue;
       }
       tret[0] = tjd - SweDate.getDeltaT(tjd);
       if ((backward!=0 && tret[0] >= tjd_start - 0.0001) 
         || (backward==0 && tret[0] <= tjd_start + 0.0001)) {
           t = tjd + direction;
-//    goto next_try;
+
         continue;
       }
       if (dctr.val < rsminusrm)
@@ -3872,7 +3871,7 @@ class Swecl {
       }
       if ((retflag & SweConst.SE_ECL_VISIBLE)==0) {
         t = tjd + direction;
-//    goto next_try;
+
         continue;
       }
       break; // next_try
@@ -5024,7 +5023,7 @@ class Swecl {
           ((ipl >= SweConst.SE_SUN && ipl <= SweConst.SE_NEPTUNE) ||
                                                     ipl == SweConst.SE_EARTH)) {
       if (ipl == SweConst.SE_MOON) {
-//      sm.swi_mean_lunar_elements(tjd_et, &xna[0], &xna[3], &xpe[0], &xpe[3]);
+
         DblObj xna0=new DblObj(); xna0.val=xna[0];
         DblObj xna3=new DblObj(); xna3.val=xna[3];
         DblObj xpe0=new DblObj(); xpe0.val=xpe[0+xpeOffs];
@@ -5663,7 +5662,7 @@ class SweConst {
   public static final int ERR=-1;
 
 //////////////////////////////////////////////////////////////////////////////
-// swephexp.h: ///////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
   
   
@@ -5942,7 +5941,7 @@ class SweConst {
   
   
   public static final String SE_EPHE_PATH=".:./ephe:/users/ephe2/:/users/ephe/";
-//  public static final String SE_EPHE_PATH=".:./ephe:/users/ephe2/:/users/ephe/:c\\:\\\\ephe:d\\:\\\\ephe:http\\://www.th-mack.de/datafiles";
+
                         
 
   static final String SE_STARFILE="fixstars.cat";
@@ -6009,15 +6008,15 @@ class SweConst {
   
   public static final int SE_APP_TO_TRUE =1;
 
-//  static final int pnoext2int[] = {SwephData.SEI_SUN, SwephData.SEI_MOON,
-//    SwephData.SEI_MERCURY, SwephData.SEI_VENUS, SwephData.SEI_MARS,
-//    SwephData.SEI_JUPITER, SwephData.SEI_SATURN, SwephData.SEI_URANUS,
-//    SwephData.SEI_NEPTUNE, SwephData.SEI_PLUTO, 0, 0, 0, 0, SwephData.SEI_EARTH,
-//    SwephData.SEI_CHIRON, SwephData.SEI_PHOLUS, SwephData.SEI_CERES,
-//    SwephData.SEI_PALLAS, SwephData.SEI_JUNO, SwephData.SEI_VESTA, };
+
+
+
+
+
+
 //
 
-// we always use Astronomical Almanac constants, if available
+
   public static final double AUNIT=1.4959787066e+11;        // au in meters,
                                                             // AA 1996 K6
 //////////////////////////////////////////////////////////////////////////////
@@ -6056,7 +6055,7 @@ class SweDate {
   public static final boolean SE_KEEP_JD=false;
 
 
-// for delta t: tidal acceleration in the mean motion of the moon
+
 
   
   public static final double SE_TIDAL_DE403=-25.8;
@@ -6185,7 +6184,7 @@ class SweDate {
   public int getYear() {
     return this.year;
   }
-//  int getYear(double jd ) { swe_revjul(jd,calType); }
+
 
   
   public int getMonth() {
@@ -6729,7 +6728,7 @@ class SweDate {
         d[i] = d[i+1] - d[i];
       B = 0.25*p*(p-1.0);
       ans += B*(d[1] + d[2]);
-//    printf( "B %.4lf, ans %.4lf\n", B, ans );
+
       if( iy+2 >= tabsiz )
         return deltatIsDone(ans, Y, B, tid_acc, tabsiz, tabend);
       
@@ -6737,7 +6736,7 @@ class SweDate {
         d[i] = d[i+1] - d[i];
       B = 2.0*B/3.0;
       ans += (p-0.5)*B*d[1];
-//    printf( "B %.4lf, ans %.4lf\n", B*(p-0.5), ans );
+
       if( (iy-2 < 0) || (iy+3 > tabsiz) )
         return deltatIsDone(ans, Y, B, tid_acc, tabsiz, tabend);
       
@@ -6745,7 +6744,7 @@ class SweDate {
         d[i] = d[i+1] - d[i];
       B = 0.125*B*(p+1.0)*(p-2.0);
       ans += B*(d[0] + d[1]);
-//    printf( "B %.4lf, ans %.4lf\n", B, ans );
+
     }
 
     return deltatIsDone(ans, Y, B, tid_acc, tabsiz, tabend);
@@ -6911,15 +6910,15 @@ class SweHouse {
 
   static final double VERY_SMALL=1E-10;
 
-// Hmmm? Never used anywhere...
-//  public double degtocs(double x) {
-//    return sl.swe_d2l((x) * SwissData.DEG);
-//  }
 
-// Hmmm? Never used anywhere...
-//  public double cstodeg(double x) {
-//    return (double)((x) * SwissData.CS2DEG);
-//  }
+
+
+
+
+
+
+
+
 
   private double sind(double x) {
     return Math.sin(x * SwissData.DEGTORAD);
@@ -7368,7 +7367,7 @@ class SweHouse {
       case (int)'K': 
         if (Math.abs(fi) >= 90 - ekl) {  
           retc = SweConst.ERR;
-//          goto porphyry;
+
           makePorphyry(hsp);
           break;
         }
@@ -7612,7 +7611,7 @@ class SweHouse {
         }
         if (Math.abs(fi) >= 90 - ekl) {  
           retc = SweConst.ERR;
-//          goto porphyry;
+
           makePorphyry(hsp);
           break;
         }
@@ -21208,7 +21207,7 @@ class SwephData {
   static final double PI = M_PI;   // 3.14159265358979323846, math.h
   static final double TWOPI = 2.0 * PI;
 
-//  static final int ENDMARK = -99;
+
 
   static final int SEI_EPSILON = -2;
   static final int SEI_NUTATION = -1;
