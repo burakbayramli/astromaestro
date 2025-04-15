@@ -28601,14 +28601,6 @@ class Zodiac  {
        
   Swetest alg = new Swetest();
 
-  /**
-   * Calculates the zodiac (taurus, aries), the <code>sign</code> for a date
-   * and a planet
-   *
-   * @param planetNumber an <code>int</code> value
-   * @param date a <code>String</code> value
-   * @return an <code>int</code> value
-   */
   public int sign(int planetNumber, String date) {
 
     String i1 = "-p" + planetNumber;
@@ -28639,13 +28631,6 @@ class Zodiac  {
     return signNo;
   }
 
-  /**
-   * Calculates a decan number within a sign, the result
-   * will be between 1,3.
-   *
-   * @param date a <code>Date</code> value
-   * @return an <code>int</code> value
-   */
   public int decanWithinSign(int planetNumber, String date) {
         
     String i1 = "-p" + planetNumber;
@@ -28674,25 +28659,12 @@ class Zodiac  {
     return decan+1;
   }
 
-  /**
-   * Describe <code>calc</code> method here.
-   *
-   * @param planetNumber an <code>int</code> value
-   * @param date a <code>String</code> value
-   * @return an <code>int</code> value
-   */
   public int decan(int planetNumber, String date) {
     int sign = sign(planetNumber, date);
     int decan = decanWithinSign(planetNumber, date);
     return (sign * 3) + decan;
   }
 
-  /**
-   * Return decan information for all planets
-   *
-   * @param date a <code>String</code> value
-   * @return an <code>int[]</code> value
-   */
   public int[] decans(String date) {
     int d[] = new int[10];
     for (int i=0;i<10;i++) {
@@ -28711,37 +28683,18 @@ class DecanTest {
 	for (Object ii : i) {
 	    System.out.println("ii=" + ii);
 	}
+	System.out.println("--------------");
     }
 
     public void testLewi() {
 	Zodiac l = new Zodiac();
 	int i;
 
-	//4
-	i = l.decan(0, "24.4.1973");
-	System.out.println("i=" + i);
-	assert 4 == i;
-        
-	//29
-	i = l.decan(1, "24.4.1973");
-	System.out.println("i=" + i);
-	assert 29 == i;
-
-	//1
-	i = l.decan(2, "24.4.1973");
-	System.out.println("i=" + i);
-	assert 1 == i;
-
-	//4
-	i = l.decan(3, "24.4.1973");
-	System.out.println("i=" + i);
-	assert 4 == i;
-
-	//32
-	i = l.decan(4, "24.4.1973");
-	System.out.println("i=" + i);
-	assert 32 == i;
-
+	// [4, 29, 1, 4, 32, 32, 8, 21, 25, 19]
+	for (int j=0;j<10;j++){
+	    i = l.decan(j, "24.4.1973");
+	    System.out.println("i=" + i);
+	}	    	
     }
 
     public static void main(String[] args) {
