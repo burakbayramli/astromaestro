@@ -5131,16 +5131,10 @@ class Swecl {
   }
 } // End of class Swecl
 class SweConst {
-////////////////////////////////////////////////////////////////////////////////
-//// sweodef.h: ////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
   
   public static final int OK=0;
   
-  public static final int ERR=-1;
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-  
+  public static final int ERR=-1;  
   
   public static final int SE_ECL_NUT=-1;
   
@@ -5453,9 +5447,6 @@ class SweConst {
 //
   public static final double AUNIT=1.4959787066e+11;        // au in meters,
                                                             // AA 1996 K6
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
   
   private SweConst() {
   }
@@ -5508,9 +5499,6 @@ class SweDate {
   private double hour;
   private double deltaT;
   private boolean deltatIsValid=false;
-  //////////////////////////////////////////////////////////////////////////////
-  // Constructors //////////////////////////////////////////////////////////////
-  // The following constructors keep julian day in favor of date:
   
   public SweDate() {
     Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+0"));
@@ -5539,15 +5527,6 @@ class SweDate {
   public SweDate(int year, int month, int day, double hour, boolean calType) {
      setFields(year, month, day, hour, calType);
    }
-  // End of constructors
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  // Public methods: ///////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  // Access to private variables ///////////////////////////////////////////////
-  // Read access: //
   
   public double getJulDay() {
     return this.jd;
@@ -5563,7 +5542,6 @@ class SweDate {
     double sjd = swe_julday(year, month, day, hour, calType);
     return sjd;
   }
-  // 0=Sunday, 1=Monday etc.
   
   public int getDayOfWeekNr() {
     return ((int)(this.jd-5.5))%7;
@@ -5625,8 +5603,6 @@ class SweDate {
     long millis=(long)((jd-JD0)*24L*3600L*1000L);
     return new Date(millis);
   }
-  // End of read access //
-  // Write access: //
   
   public void setJulDay(double newJD) {
     this.jd=newJD;
@@ -5838,8 +5814,6 @@ class SweDate {
     this.day = dt.day;
     this.hour = dt.hour;
   }
-  // End of access to private variables ////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
   
   public double getTidalAcc() {
     return this.tid_acc;
@@ -5866,12 +5840,6 @@ class SweDate {
            "Jul. Day: " + getJulDay() + "; " +
            "DeltaT: " + getDeltaT();
   }
-  // End of public methods /////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  // Private methods: //////////////////////////////////////////////////////////
   private static synchronized double swe_julday(int year, int month, int day,
                                                 double hour, boolean calType) {
     double jd;
@@ -5897,10 +5865,6 @@ class SweDate {
     }
     return jd;
   }
-  //////////////////////////////////////////////////////////////////////
-  // Erzeugt aus einem jd/calType Jahr, Monat, Tag und Stunde.        //
-  // It does NOT change any global variables.                         //
-  //////////////////////////////////////////////////////////////////////
   private synchronized IDate swe_revjul (double jd, boolean calType) {
     IDate dt=new IDate();
     double u0,u1,u2,u3,u4;
@@ -5924,9 +5888,6 @@ class SweDate {
     dt.hour = (jd - Math.floor (jd + 0.5) + 0.5) * 24.0;
     return dt;
   }
-  ////////////////////////////////////////////////////////////////////////////
-  /// deltaT:
-  ////////////////////////////////////////////////////////////////////////////
   
   private static final int TABSTART=1620;
   private static final int TABEND=2014;
@@ -6260,15 +6221,9 @@ class SweHouse {
   private double asind(double x) {
     return (Math.asin(x) * SwissData.RADTODEG);
   }
-//Never used anywhere//  private double acosd(double x) {
-//Never used anywhere//    return (Math.acos(x) * SwissData.RADTODEG);
-//Never used anywhere//  }
   private double atand(double x) {
     return (Math.atan(x) * SwissData.RADTODEG);
   }
-//Never used anywhere//  private double atan2d(double y, double x) {
-//Never used anywhere//    return (Math.atan2(y, x) * SwissData.RADTODEG);
-//Never used anywhere//  }
   
   
   int swe_houses(double tjd_ut,
@@ -16521,10 +16476,6 @@ class SwephData {
   static final int IS_MAIN_ASTEROID = 3;
   static final boolean DO_SAVE = true;
   static final boolean NO_SAVE = false;
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double SURYA_MAX_LON_SPEED = 1.025;
   static final double SURYA_MIN_LON_SPEED = 0.946;
   static final double SURYA_MAX_LON_ACCEL = 0.000735;
@@ -16561,8 +16512,6 @@ class SwephData {
   static final double SURYA_MIN_HELIO_DIST_SPEED = 0;
   static final double SURYA_MAX_HELIO_DIST_ACCEL = 0;
   static final double SURYA_MIN_HELIO_DIST_ACCEL = 0;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double CHANDRA_MAX_LON_SPEED = 15.41;
   static final double CHANDRA_MIN_LON_SPEED = 11.75;
   static final double CHANDRA_MAX_LON_ACCEL = 0.522;
@@ -16599,8 +16548,6 @@ class SwephData {
   static final double CHANDRA_MIN_HELIO_DIST_SPEED = -0.000889;
   static final double CHANDRA_MAX_HELIO_DIST_ACCEL = 0.0001394;
   static final double CHANDRA_MIN_HELIO_DIST_ACCEL = -0.00013959;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double BUDHA_MAX_LON_SPEED = 2.23;
   static final double BUDHA_MIN_LON_SPEED = -1.40;
   static final double BUDHA_MAX_LON_ACCEL = 0.20;
@@ -16637,8 +16584,6 @@ class SwephData {
   static final double BUDHA_MIN_HELIO_DIST_SPEED = -0.005831;
   static final double BUDHA_MAX_HELIO_DIST_ACCEL = 0.00064693;
   static final double BUDHA_MIN_HELIO_DIST_ACCEL = -0.0002801;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double SHUKRA_MAX_LON_SPEED = 1.266;
   static final double SHUKRA_MIN_LON_SPEED = -0.65;
   static final double SHUKRA_MAX_LON_ACCEL = 0.0427;
@@ -16675,8 +16620,6 @@ class SwephData {
   static final double SHUKRA_MIN_HELIO_DIST_SPEED = -0.0002172;
   static final double SHUKRA_MAX_HELIO_DIST_ACCEL = 0.000006264;
   static final double SHUKRA_MIN_HELIO_DIST_ACCEL = -0.000005947;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double MANGALA_MAX_LON_SPEED = 0.794;
   static final double MANGALA_MIN_LON_SPEED = -0.404;
   static final double MANGALA_MAX_LON_ACCEL = 0.0146;
@@ -16713,8 +16656,6 @@ class SwephData {
   static final double MANGALA_MIN_HELIO_DIST_SPEED = -0.0013516;
   static final double MANGALA_MAX_HELIO_DIST_ACCEL = 0.000015148;
   static final double MANGALA_MIN_HELIO_DIST_ACCEL = -0.000010287;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double GURU_MAX_LON_SPEED = 0.244;
   static final double GURU_MIN_LON_SPEED = -0.1369;
   static final double GURU_MAX_LON_ACCEL = 0.00354;
@@ -16751,8 +16692,6 @@ class SwephData {
   static final double GURU_MIN_HELIO_DIST_SPEED = -0.00040970;
   static final double GURU_MAX_HELIO_DIST_ACCEL = 0.00000077866;
   static final double GURU_MIN_HELIO_DIST_ACCEL = -0.0000006786;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double SHANI_MAX_LON_SPEED = 0.13404;
   static final double SHANI_MIN_LON_SPEED = -0.084;
   static final double SHANI_MAX_LON_ACCEL = 0.00199;
@@ -16789,8 +16728,6 @@ class SwephData {
   static final double SHANI_MIN_HELIO_DIST_SPEED = -0.00044091;
   static final double SHANI_MAX_HELIO_DIST_ACCEL = 0.00000043248;
   static final double SHANI_MIN_HELIO_DIST_ACCEL = -0.00000041039;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double URANUS_MAX_LON_SPEED = 0.067;
   static final double URANUS_MIN_LON_SPEED = -0.044;
   static final double URANUS_MAX_LON_ACCEL = 0.000929;
@@ -16827,8 +16764,6 @@ class SwephData {
   static final double URANUS_MIN_HELIO_DIST_SPEED = -0.00020132;
   static final double URANUS_MAX_HELIO_DIST_ACCEL = 0.00000028679;
   static final double URANUS_MIN_HELIO_DIST_ACCEL = -0.000000229;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double NEPTUNE_MAX_LON_SPEED = 0.040;
   static final double NEPTUNE_MIN_LON_SPEED = -0.0286;
   static final double NEPTUNE_MAX_LON_ACCEL = 0.000612;
@@ -16865,8 +16800,6 @@ class SwephData {
   static final double NEPTUNE_MIN_HELIO_DIST_SPEED = -0.000038379;
   static final double NEPTUNE_MAX_HELIO_DIST_ACCEL = 0.00000022853;
   static final double NEPTUNE_MIN_HELIO_DIST_ACCEL = -0.00000023012;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double PLUTO_MAX_LON_SPEED = 0.041;
   static final double PLUTO_MIN_LON_SPEED = -0.0284;
   static final double PLUTO_MAX_LON_ACCEL = 0.000601;
@@ -16903,8 +16836,6 @@ class SwephData {
   static final double PLUTO_MIN_HELIO_DIST_SPEED = -0.00071142;
   static final double PLUTO_MAX_HELIO_DIST_ACCEL = 0.0000002773;
   static final double PLUTO_MIN_HELIO_DIST_ACCEL = -0.00000022049;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double MNODE_MAX_LON_SPEED = -0.0528;
   static final double MNODE_MIN_LON_SPEED = -0.0531;
   static final double MNODE_MAX_LON_ACCEL = 0.0000249;
@@ -16942,8 +16873,6 @@ class SwephData {
   static final double MNODE_MIN_HELIO_DIST_SPEED = 1./0.;
   static final double MNODE_MAX_HELIO_DIST_ACCEL = 1./0.;
   static final double MNODE_MIN_HELIO_DIST_ACCEL = 1./0.;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double TNODE_MAX_LON_SPEED = 0.0328;
   static final double TNODE_MIN_LON_SPEED = -0.261;
   static final double TNODE_MAX_LON_ACCEL = 0.054;
