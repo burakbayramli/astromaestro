@@ -26526,7 +26526,7 @@ class SwephMosh {
           sp = sp.substring(0,Math.min(sp.length(),spIdx+9)) +
                sp.substring(Math.min(sp.length(),spIdx+9)).toLowerCase();
 
-//            fict_ifl.val |= FICT_GEO;
+
           if (cpos[9].indexOf("geo") >= 0) {
             fict_ifl.val |= FICT_GEO;
           }
@@ -26537,7 +26537,7 @@ class SwephMosh {
         if (serr != null) {
           serr.append(serri).append(" elements for planet ").append(ipl).append(" not found");
         }
-//      goto return_err;
+
         fp.close(); return SweConst.ERR;
       }
       fp.close();
@@ -26558,7 +26558,7 @@ class SwephMosh {
     tt[2] = tt[1] * tt[1];
     tt[3] = tt[2] * tt[1];
     tt[4] = tt[3] * tt[1];
-//    if (strpbrk(sinp, "+-") != null)
+
     if (sinp.indexOf('+') + sinp.indexOf('-') > -2) {
       retc = 1; 
     }
@@ -26664,7 +26664,7 @@ class SwissData {
   };
 
 //////////////////////////////////////////////////////////////////////////////
-// sweodef.h: ////////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
   static final double M_PI=3.14159265358979323846;
 
@@ -26709,12 +26709,12 @@ class SwissData {
 
 
 //////////////////////////////////////////////////////////////////////////////
-// swephexp.h: ///////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
   public static final int SE_NSIDM_PREDEF         =21;
 
-//  static final int SE_MAX_STNAME=20;    // maximum size of fixstar name;
-//                                        // the parameter star in swe_fixstar
+
+
 //					// must allow twice this space for
 //				        // the returned star name.
 //
@@ -29211,23 +29211,23 @@ class SwissEph {
                 }
             }
         }
-//         //    s="SwissEph file '"+fname+"' not found in PATH '"+ephepath+"'";
-//         s="SwissEph file '"+fname+"' not found in the paths of: ";
-//         for (int n=0;n<cpos.length;n++) {
-//             if (cpos[n]!=null && !"".equals(cpos[n])) { s+="'"+cpos[n]+"', "; }
-//         }
-//         
-//         // Who cares...
-//         //    s=s.substring(0,Math.min(s.length(),SwissData.AS_MAXCH));
-//         if (serr != null) {
-//             serr.setLength(0);
-//             serr.append(s);
-//         }
-//         ////#ifdef TRACE0
-//         //    Trace.level--;
-//         ////#endif 
-//         throw new SwissephException(1./0., SwissephException.FILE_NOT_FOUND,
-//                                     SwephData.NOT_AVAILABLE, serr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         return null;
     }
 
@@ -32150,29 +32150,29 @@ static final boolean NUT_IAU_2000B       = true;
 
 
 //////////////////////////////////////////////////////////////////////////////
-// Public methods: ///////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
   public double square_sum(double x[]) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "SwissLib.square_sum(double[])");
+
+
 ////#ifdef TRACE1
-//    Trace.printDblArr("x", x);
+
 ////#endif 
-//    Trace.level--;
+
 ////#endif 
     return x[0]*x[0]+x[1]*x[1]+x[2]*x[2];
   }
 
   public double square_sum(double x[], int offset) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "SwissLib.square_sum(double[], int)");
+
+
 ////#ifdef TRACE1
-//    Trace.printDblArr("x", x);
-//    DevNull.println("    offset: " + offset);
+
+
 ////#endif 
-//    Trace.level--;
+
 ////#endif 
     return x[offset]*x[offset]+x[1+offset]*x[1+offset]+x[2+offset]*x[2+offset];
   }
@@ -32202,7 +32202,7 @@ if (Double.doubleToLongBits(x) == 0xc11cd9d69f7e189dL) {
     return(y);
   }
 
-// Well: used by Swetest.java... //#ifndef ASTROLOGY
+
   
   
   public double swe_radnorm(double x) {
@@ -32216,24 +32216,24 @@ if (Double.doubleToLongBits(x) == 0xc11cd9d69f7e189dL) {
     }
     return(y);
   }
-// Well: used by Swetest.java... //#endif 
 
-// Well: used by Swetest.java... //#ifndef ASTROLOGY
+
+
   public double swe_deg_midp(double x1, double x0) {
     double y;
-// This is completely blown up for nothing:
-//    d = swe_difdeg2n(x1, x0);     
-//    y = swe_degnorm(x0 + d / 2);
+
+
+
     y = swe_degnorm((x1 + x0)/2);
     return(y);
   }
-// Well: used by Swetest.java... //#endif 
 
-// Well: used by Swetest.java... //#ifndef ASTROLOGY
+
+
   public double swe_rad_midp(double x1, double x0) {
     return SwissData.DEGTORAD * swe_deg_midp(x1 * SwissData.RADTODEG, x0 * SwissData.RADTODEG);
   }
-// Well: used by Swetest.java... //#endif 
+
 
   
   public double swi_mod2PI(double x) {
@@ -32870,14 +32870,14 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
   
   public int swi_cutstr(String s, String cutlist, String cpos[], int nmax) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "SwissLib.swi_cutstr(String, String, String[], int)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    s: " + s + "\n    cutlist: " + cutlist);
-//    for(int z = 0; z < cpos.length; z++) {
-//      DevNull.println("    cpos[" + z + "]: " + cpos[z]);
-//    }
-//    DevNull.println("    nmax: " + nmax);
+
+
+
+
+
 ////#endif 
 ////#endif 
     s=s.trim();
@@ -32889,9 +32889,9 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
       String g=tk.nextToken();
       // Characters in cutlist can be valid characters of the String. If
       // escaped with "\\", join together, what the StringTokenizer separated
-// Well, well: 'while g.endsWith("\\\\")', then obviously not, but
-// while 'g.endsWith("\\\\\\")', then yes, etc. pp.... So I would have to
-// do something about this one "sometime"...
+
+
+
       while (g.endsWith("\\") && tk.hasMoreTokens()) {
         g=g.substring(0,g.length()-1)+tk.nextToken();
         if (tk.hasMoreTokens()) {
@@ -32910,7 +32910,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
       cpos[n] = null;
     }
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
     return n;
   }       
@@ -32973,13 +32973,13 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
 
 
   
-//  String swi_gen_filename(double tjd, int ipli, String fname)
+
   public String swi_gen_filename(SweDate sd, int ipli) {
 ////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "SwissLib.swi_gen_filename(SweDate, int)");
+
+
 ////#ifdef TRACE1
-//    DevNull.println("    sd: " + sd + "\n    ipli: " + ipli);
+
 ////#endif 
 ////#endif 
     int icty;
@@ -32987,7 +32987,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     int sgn;
     String fname;
 ////#ifdef ORIGINAL
-//    CFmt cv=new CFmt();
+
 ////#endif 
 
     switch(ipli) {
@@ -33023,7 +33023,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
         fname = "ast" + ((ipli - SweConst.SE_AST_OFFSET) / 1000) +
                 swed.DIR_GLUE + "se" + iplNr + "." + SwephData.SE_FILE_SUFFIX;
 ////#ifdef TRACE0
-//        Trace.level--;
+
 ////#endif 
         return fname;   
         
@@ -33057,10 +33057,10 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
       fname+="_";
     }
     icty = Math.abs(icty);
-//  sprintf(fname + strlen(fname), "%02d.%s", icty, SE_FILE_SUFFIX);
+
     fname+=(icty<10?"0":"")+icty+"."+SwephData.SE_FILE_SUFFIX;
 ////#ifdef TRACE0
-//    Trace.level--;
+
 ////#endif 
     return fname;
   }
@@ -33157,7 +33157,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
   }
 
 //////////////////////////////////////////////////////////////////////////////
-// swejpl.c: /////////////////////////////////////////////////////////////////
+
 //////////////////////////////////////////////////////////////////////////////
 
   
@@ -33179,7 +33179,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     return (dif);
   }
 
-// Well: used by Swetest.java... //#ifndef ASTROLOGY
+
   public double swe_difrad2n(double p1, double p2) {
     double dif;
     dif = swe_radnorm(p1 - p2);
@@ -33188,11 +33188,8 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     }
     return (dif);
   }
-// Well: used by Swetest.java... //#endif 
 
-//////////////////////////////////////////////////////////////////////////////
-// In this Java port only: ///////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+
   
   public static synchronized double atof(String src) {
     // atof() (in C) allows extra strings after the number, and even no number
