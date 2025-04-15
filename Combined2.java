@@ -24242,15 +24242,15 @@ class SwephData {
 
 
   static final double INTPAPOG_MIN_TOPO_LON_SPEED = -0.1556659;
-// TOPO, SWI:   -0.1556655965864008 181.3381794957473687 -248811.1206210330128670 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MAX_TOPO_LON_ACCEL = 0.0103158;
-// TOPO, SWI:   0.0103153290223904 161.0054436817775922 -213377.5059353846590966 -213377.4142315846693236 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MIN_TOPO_LON_ACCEL = -0.0103707;
-// TOPO, SWI:   -0.0103706122872579 200.8622494083237200 -203530.1684848828590475 -203530.0767810828692745 /   11.0   52.2 -110000.0
 
-// No heliocentric positions for the interpolated lunar apogee...
+
+
   static final double INTPAPOG_MAX_HELIO_LON_SPEED = 1./0.;
   static final double INTPAPOG_MIN_HELIO_LON_SPEED = 1./0.;
   static final double INTPAPOG_MAX_HELIO_LON_ACCEL = 1./0.;
@@ -24258,30 +24258,30 @@ class SwephData {
 
 
   static final double INTPAPOG_MAX_LAT_SPEED = 0.031604;
-// NOTOPO, SWI: 0.0315994798603946 87.9936727871609463 113881.2599290367797948 / 
+
 
   static final double INTPAPOG_MIN_LAT_SPEED = -0.031613;
-// NOTOPO, SWI: -0.0316127256048458 90.0716920369863772 86498.3218401453632396 / 
+
 
   static final double INTPAPOG_MAX_LAT_ACCEL = 0.00109429;
-// NOTOPO, SWI: 0.0010942503832445 159.2212151742582193 129241.3713183611835120 129241.4630221611878369 / 
+
 
   static final double INTPAPOG_MIN_LAT_ACCEL = -0.0010990;
-// NOTOPO, SWI: -0.0010988461699215 159.2054935712743031 193893.8341646414774004 193893.9258684414671734 / 
+
 
   static final double INTPAPOG_MAX_TOPO_LAT_SPEED = 0.03159950;
-// TOPO, SWI:   0.0315994798603946 87.9958094942441136 113881.2599290367797948 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MIN_TOPO_LAT_SPEED = -0.031610;
-// TOPO, SWI:   -0.0316127256048458 90.0695815720781354 86498.3218401453632396 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MAX_TOPO_LAT_ACCEL = 0.00109428;
-// TOPO, SWI:   0.0010942503832445 159.2203358042442574 129241.3713183611835120 129241.4630221611878369 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MIN_TOPO_LAT_ACCEL = -0.00109888;
-// TOPO, SWI:   -0.0010988461699215 159.2044287384800043 193893.8341646414774004 193893.9258684414671734 /   11.0   52.2 -110000.0
 
-// No heliocentric positions for the interpolated lunar apogee...
+
+
   static final double INTPAPOG_MAX_HELIO_LAT_SPEED = 1./0.;
   static final double INTPAPOG_MIN_HELIO_LAT_SPEED = 1./0.;
   static final double INTPAPOG_MAX_HELIO_LAT_ACCEL = 1./0.;
@@ -24289,30 +24289,30 @@ class SwephData {
 
 
   static final double INTPAPOG_MAX_DIST_SPEED = 0.00000026577;
-// NOTOPO, SWI: 0.0000002657689017 53.6816352061185000 117431.3891386042087106 / 
+
 
   static final double INTPAPOG_MIN_DIST_SPEED = -0.00000026575;
-// NOTOPO, SWI: -0.0000002657174555 53.4782487399821207 73067.1998839119332843 / 
+
 
   static final double INTPAPOG_MAX_DIST_ACCEL = 0.0000000080677;
-// NOTOPO, SWI: 0.0000000080672739 90.8251587442524198 -225234.3487550623540301 -225234.2570512623642571 / 
+
 
   static final double INTPAPOG_MIN_DIST_ACCEL = -0.000000006945;
-// NOTOPO, SWI: -0.0000000069406502 20.5051785050152091 -228442.5144939045712817 -228442.4227901045815088 / 
+
 
   static final double INTPAPOG_MAX_TOPO_DIST_SPEED = 0.00000026584;
-// TOPO, SWI:   0.0000002657689017 53.6811086900653294 117431.3891386042087106 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MIN_TOPO_DIST_SPEED = -0.00000026578;
-// TOPO, SWI:   -0.0000002657174555 53.4794988864201173 73067.1998839119332843 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MAX_TOPO_DIST_ACCEL = 0.0000000080677;
-// TOPO, SWI:   0.0000000080672739 90.8246001429053251 -225234.3487550623540301 -225234.2570512623642571 /   11.0   52.2 -110000.0
+
 
   static final double INTPAPOG_MIN_TOPO_DIST_ACCEL = -0.0000000069411;
-// TOPO, SWI:   -0.0000000069406502 20.5045668379371619 -228442.5144939045712817 -228442.4227901045815088 /   11.0   52.2 -110000.0
 
-// No heliocentric positions for the interpolated lunar apogee...
+
+
   static final double INTPAPOG_MAX_HELIO_DIST_SPEED = 1./0.;
   static final double INTPAPOG_MIN_HELIO_DIST_SPEED = 1./0.;
   static final double INTPAPOG_MAX_HELIO_DIST_ACCEL = 1./0.;
@@ -24321,33 +24321,33 @@ class SwephData {
 
 
 ///////////////////////////////////////////////////////////////
-// INTERPOLATED LUNAR PERIGEE: ////////////////////////////////
+
 ///////////////////////////////////////////////////////////////
   static final double INTPPERG_MAX_LON_SPEED = 0.583372;
-// NOTOPO, SWI: 0.5833691782377636 180.7541537466819648 -195482.2429977803840302 / 
+
 
   static final double INTPPERG_MIN_LON_SPEED = -2.33189;
-// NOTOPO, SWI: -2.3318574545550006 90.4900510056987173 -225440.0403784394147806 / 
+
 
   static final double INTPPERG_MAX_LON_ACCEL = 0.185425;
-// NOTOPO, SWI: 0.1854155305874408 75.5854712193087153 -225435.3634846399363596 -225435.2717808399465866 / 
+
 
   static final double INTPPERG_MIN_LON_ACCEL = -0.185357;
-// NOTOPO, SWI: -0.1853488568522996 105.1872612317180256 -225444.8089760388829745 -225444.7172722388932016 / 
+
 
   static final double INTPPERG_MAX_TOPO_LON_SPEED = 0.583371;
-// TOPO, SWI:   0.5833691782377636 180.7521396528094044 -195482.2429977803840302 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MIN_TOPO_LON_SPEED = -2.33188;
-// TOPO, SWI:   -2.3318574545550006 90.4891309374753803 -225440.0403784394147806 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MAX_TOPO_LON_ACCEL = 0.185418;
-// TOPO, SWI:   0.1854155305874408 75.5833331251805873 -225435.3634846399363596 -225435.2717808399465866 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MIN_TOPO_LON_ACCEL = -0.185353;
-// TOPO, SWI:   -0.1853488568522996 105.1878730265365505 -225444.8089760388829745 -225444.7172722388932016 /   11.0   52.2 -110000.0
 
-// No heliocentric positions for the interpolated lunar apogee...
+
+
   static final double INTPPERG_MAX_HELIO_LON_SPEED = 1./0.;
   static final double INTPPERG_MIN_HELIO_LON_SPEED = 1./0.;
   static final double INTPPERG_MAX_HELIO_LON_ACCEL = 1./0.;
@@ -24355,30 +24355,30 @@ class SwephData {
 
 
   static final double INTPPERG_MAX_LAT_SPEED = 0.193078;
-// NOTOPO, SWI: 0.1930717143394080 90.0115560113064532 113883.4608202368835919 / 
+
 
   static final double INTPPERG_MIN_LAT_SPEED = -0.193022;
-// NOTOPO, SWI: -0.1930161983476893 89.4196971936011806 86497.8633211453416152 / 
+
 
   static final double INTPPERG_MAX_LAT_ACCEL = 0.016642;
-// NOTOPO, SWI: 0.0166359116524948 76.2925199859609791 49235.2163400813224143 49235.3080438813194633 / 
+
 
   static final double INTPPERG_MIN_LAT_ACCEL = -0.016678;
-// NOTOPO, SWI: -0.0166704364156631 102.9727818515069657 21849.5271389294648543 21849.6188427294655412 / 
+
 
   static final double INTPPERG_MAX_TOPO_LAT_SPEED = 0.193073;
-// TOPO, SWI:   0.1930717143394080 90.0105331109555209 113883.4608202368835919 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MIN_TOPO_LAT_SPEED = -0.193018;
-// TOPO, SWI:   -0.1930161983476893 89.4192992318445903 86497.8633211453416152 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MAX_TOPO_LAT_ACCEL = 0.016639;
-// TOPO, SWI:   0.0166359116524948 76.2903781852012628 49235.2163400813224143 49235.3080438813194633 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MIN_TOPO_LAT_ACCEL = -0.016674;
-// TOPO, SWI:   -0.0166704364156631 102.9735765715234663 21849.5271389294648543 21849.6188427294655412 /   11.0   52.2 -110000.0
 
-// No heliocentric positions for the interpolated lunar apogee...
+
+
   static final double INTPPERG_MAX_HELIO_LAT_SPEED = 1./0.;
   static final double INTPPERG_MIN_HELIO_LAT_SPEED = 1./0.;
   static final double INTPPERG_MAX_HELIO_LAT_ACCEL = 1./0.;
@@ -24386,30 +24386,30 @@ class SwephData {
 
 
   static final double INTPPERG_MAX_DIST_SPEED = 0.00000143617;
-// NOTOPO, SWI: 0.0000014361421628 141.2208548421972978 -170288.1829151900892612 / 
+
 
   static final double INTPPERG_MIN_DIST_SPEED = -0.00000143606;
-// NOTOPO, SWI: -0.0000014360402824 139.9198637739893059 -162611.6578180461947341 / 
+
 
   static final double INTPPERG_MAX_DIST_ACCEL = 0.0000000294169;
-// NOTOPO, SWI: 0.0000000294167244 180.4954568523366447 -134123.4138322232756764 -134123.3221284232859034 / 
+
 
   static final double INTPPERG_MIN_DIST_ACCEL = -0.00000015879;
-// NOTOPO, SWI: -0.0000001587702460 89.4060875782472237 -194761.3594260607787874 -194761.2677222607890144 / 
+
 
   static final double INTPPERG_MAX_TOPO_DIST_SPEED = 0.00000143615;
-// TOPO, SWI:   0.0000014361421628 141.2194617019951295 -170288.1829151900892612 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MIN_TOPO_DIST_SPEED = -0.00000143607;
-// TOPO, SWI:   -0.0000014360402824 139.9202523240743119 -162611.6578180461947341 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MAX_TOPO_DIST_ACCEL = 0.000000029418;
-// TOPO, SWI:   0.0000000294167244 180.4935094803453808 -134123.4138322232756764 -134123.3221284232859034 /   11.0   52.2 -110000.0
+
 
   static final double INTPPERG_MIN_TOPO_DIST_ACCEL = -0.00000015880;
-// TOPO, SWI:   -0.0000001587702460 89.4081386018435751 -194761.3594260607787874 -194761.2677222607890144 /   11.0   52.2 -110000.0
 
-// No heliocentric positions for the interpolated lunar apogee...
+
+
   static final double INTPPERG_MAX_HELIO_DIST_SPEED = 1./0.;
   static final double INTPPERG_MIN_HELIO_DIST_SPEED = 1./0.;
   static final double INTPPERG_MAX_HELIO_DIST_ACCEL = 1./0.;
@@ -24418,114 +24418,114 @@ class SwephData {
 
 
 ///////////////////////////////////////////////////////////////
-// SURYA S max notopo:  1.0243864993
-// SURYA S min notopo:  0.9486638198
-// SURYA S max topo3:   1.0388159322
-// SURYA S min topo3:   0.9347718616
-// CHANDRA max notopo:  15.4042491124
-// CHANDRA min notopo: 11.7571075192
-// CHANDRA max topo3:   21.5666962324
-// CHANDRA min topo3:  6.1294391379
-// CHANDRA max notopo:  0.5186888
-// CHANDRA min notopo:  -0.5188292
-// CHANDRA max topo3:   38.1641267
-// CHANDRA min topo3:   -38.1716335
-// BUDHA max notopo:  2.2121102506 //??? 2.2537837349
-// BUDHA min notopo:  -1.3908278667
-// BUDHA max topo3:   2.2229697247
-// BUDHA min topo3:   -1.4125035236
-// BUDHA max notopo:  0.1968066, everything beyond seems to be unexact
-//                         calculation due to too much nearness to the sun!
-// BUDHA min notopo: -0.1986822, everything beyond seems to be unexact
-//                         calculation due to too much nearness to the sun!
-// BUDHA max topo3: 8.4292471 // SY-Problem? Realistic: 0.3244554
-// BUDHA min topo3: -34.4871693 // SY-Problem? Realistic: -0.3282049
-// SHUKRA max notopo: 1.2644483889
-// SHUKRA max topo3:  1.2733039990
-// SHUKRA min notopo: -0.6437175784
-// SHUKRA min topo3:  -0.6963885604 // Sy-Problem???
-// SHUKRA max notopo:  0.0423762, everything beyond seems to be unexact
-//                         calculation due to too much nearness to the sun!
-// SHUKRA min notopo: -0.0430388, everything beyond seems to be unexact
-//                         calculation due to too much nearness to the sun!
-// SHUKRA max topo3: 1.1127520 // SY-Problem? Realistic: 0.3878079
-// SHUKRA min topo3: -2.9288472 // SY-Problem? Realistic: -0.3884931
-// MANGALA max notopo: 0.7924011226
-// MANGALA max topo3:  0.7985878049
-// MANGALA min notopo: -0.4035104555
-// MANGALA min topo3:  -0.4261278855
-// MANGALA max notopo:  0.0144224, everything beyond seems to be unexact
-//                     calculation due to too much nearness to the sun!
-// MANGALA min notopo: -0.0152010, everything beyond seems to be unexact
-//                     calculation due to too much nearness to the sun!
-// MANGALA max topo3:   5.3859140 // SY-Problem? Realistic: 0.2652052
-// MANGALA min topo3:   -0.7430761 // SY-Problem? Realistic: -0.2653766
-// SHANI max notopo: 0.1338471290 // Sy-Problem 0.1342611535?
-// SHANI max topo3:  0.1353554794
-// SHANI min notopo: -0.0842836027
-// SHANI min topo3:  -0.0860881714
-// SHANI max notopo:  0.0020007, everything beyond seems to be unexact
-//                         calculation due to too much nearness to the sun!
-// SHANI min notopo: -0.0019460, everything beyond seems to be unexact
-//                         calculation due to too much nearness to the sun!
-// SHANI max topo3: 47.8021777 // SY-problem? Realistic: 0.0135465
-// SHANI min topo3: -9.9611508 // SY-problem? Realistic: -0.0134697
-// GURU S max notopo: 0.2440423861
-// GURU S min notopo: -0.1368372415
-// GURU S max topo3:  0.2465672865
-// GURU S min topo3:  -0.1403921701
-// GURU A max notopo:  0.0036155, everything beyond seems to be unexact
-//                    calculation due to too much nearness to the sun!
-// GURU A min notopo: -0.0034178, everything beyond seems to be unexact
-//                    calculation due to too much nearness to the sun!
-// GURU A max topo3: 3.6034504 // SY-problem? Realistic: 0.0266245
-// GURU A min topo3: -16.4451885 // SY-problem? Realistic: -0.0267212
-// URANUS A max notopo:  0.0009501, everything beyond seems to be unexact
-//                      calculation due to too much nearness to the sun!
-// URANUS A min notopo: -0.0009897, everything beyond seems to be unexact
-//                      calculation due to too much nearness to the sun!
-// URANUS A max topo3: 8.4594472 // SY-problem? Realistic: 0.0063635
-// URANUS A min topo3: -44.1816134 // SY-problem? Realistic: -0.0064026
-// URANUS S max notopo: 0.0637152951 // Sy-Problem beyond?
-// URANUS S max topo3:  0.0681905640
-// URANUS S min notopo: -0.0439752018
-// URANUS S min topo3:  -0.0447987374
-// NEPTUNE A max notopo:  0.0006291, everything beyond seems to be unexact
-//                       calculation due to too much nearness to the sun!
-// NEPTUNE A min notopo: -0.0006255, everything beyond seems to be unexact
-//                       calculation due to too much nearness to the sun!
-// NEPTUNE A max topo3: 5.9498810 // SY-problem? Realistic: 0.0039052
-// NEPTUNE A min topo3: -12.7924566 // SY-problem? Realistic: -0.0038898
-// NEPTUNE S max notopo: 0.0381288654 // Sy-Problem? 0.0432424224
-// NEPTUNE S max topo3:  0.0437376690
-// NEPTUNE S min notopo: -0.0285824820
-// NEPTUNE S min topo3:  -0.0290549670
-// PLUTO A max notopo:  0.0006226, everything beyond seems to be unexact
-//                     calculation due to too much nearness to the sun!
-// PLUTO A min notopo: -0.0006607, everything beyond seems to be unexact
-//                     calculation due to too much nearness to the sun!
-// PLUTO A max topo3: 1.2429646 // SY-problem? Realistic: 0.0040215
-// PLUTO A min topo3: -1.7390824 // SY-problem? Realistic: -0.0040603
-// PLUTO S max notopo: 0.0409935333
-// PLUTO S max topo3:  0.0414652881
-// PLUTO S min notopo: -0.0283697947
-// PLUTO S min topo3:  -0.0289179185
-// MNODE A max notopo:  0.0000508
-// MNODE A min notopo: -0.0000508
-// MNODE A max topo3:  0.0000508
-// MNODE A min topo3: -0.0000508
-// MNODE S max notopo: -0.0528817186
-// MNODE S max topo3:  -0.0528817186
-// MNODE S min notopo: -0.0530035225
-// MNODE S min topo3:  -0.0530035225
-// TNODE A max notopo: 573.1032358  // Errors in calculations???
-// TNODE A min notopo: -444.7164997 // Errors in calculations???
-// TNODE A max topo3: 695.8627388 // Errors in calculations???
-// TNODE A min topo3: -444.6272115 // Errors in calculations???
-// TNODE S max notopo: 0.4448616947
-// TNODE S max topo3:  0.4448616947
-// TNODE S min notopo: -0.5805968771
-// TNODE S min topo3:  -0.5805968771
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////////////////////////////////////////////////
 
 
@@ -25079,57 +25079,57 @@ class SwephJPL {
       // throws SwissephException, if null or maybe for other reasons:
       js.jplfptr = sw.swi_fopen(SwephData.SEI_FILE_PLANET, js.jplfname, js.jplfpath, serr);
       
-//    fread((void *) &ttl[0], 1, 252, js->jplfptr);
+
       for(int m=0; m<252; m++) {
         ttl+=(char)js.jplfptr.readByte();
       }
     
-//    fread((void *) js->ch_cnam, 1, 6*400, js->jplfptr);
+
       for(int m=0; m<6*400; m++) {
         ttl+=(char)js.jplfptr.readByte();
       }
       
-//    fread((void *) &ss[0], sizeof(double), 3, js->jplfptr);
+
       for(int m=0; m<3; m++) {
         ss[m]=js.jplfptr.readDouble();
       }
-// Don't mind "reorder"...
-//    
-//    if (ss[2] < 1 || ss[2] > 200)
-//      js.do_reorder = true;
-//    else
-//      js.do_reorder = false;
+
+
+
+
+
+
       for (i = 0; i < 3; i++)
         js.eh_ss[i] = ss[i];
-//    if (js.do_reorder)
-//      reorder((char *) &js->eh_ss[0], sizeof(double), 3);
+
+
       
-//    fread((void *) &ncon, sizeof(long), 1, js->jplfptr);
+
         ncon=js.jplfptr.readInt();
-//    if (js->do_reorder)
-//      reorder((char *) &ncon, sizeof(long), 1);
+
+
       
-//    fread((void *) &au, sizeof(double), 1, js->jplfptr);
+
       au=js.jplfptr.readDouble();
-//    if (js->do_reorder)
-//      reorder((char *) &au, sizeof(double), 1);
+
+
       
-//    fread((void *) &emrat, sizeof(double), 1, js->jplfptr);
+
       emrat=js.jplfptr.readDouble();
-//    if (js->do_reorder)
-//      reorder((char *) &emrat, sizeof(double), 1);
+
+
       
-//    fread((void *) &js->eh_ipt[0], sizeof(long), 36, js->jplfptr);
+
       for(int m=0; m<36; m++) {
         js.eh_ipt[m]=js.jplfptr.readInt();
       }
-//    if (js->do_reorder)
-//      reorder((char *) &js->eh_ipt[0], sizeof(long), 36);
+
+
       
-//    fread((void *) &numde, sizeof(long), 1, js->jplfptr);
+
         numde=js.jplfptr.readInt();
-//    if (js->do_reorder)
-//      reorder((char *) &numde, sizeof(long), 1);
+
+
       js.jplfptr.seek(0);
       
     } catch (java.io.IOException ioe) {
@@ -25415,72 +25415,72 @@ class SwephJPL {
         irecsz_state = nrecl * ksize;     
         ncoeffs_state = ksize / 2;        
         
-//      fread((void *) &ch_ttl[0], 1, 252, js.jplfptr);
+
         for(int m=0;m<252;m++) {
           ch_ttl+=(char)js.jplfptr.readByte();
         }
         
-//      fread((void *) js.ch_cnam, 1, 2400, js.jplfptr);
+
         for(int m=0;m<2400;m++) {
           js.ch_cnam+=(char)js.jplfptr.readByte();
         }
         
-//      fread((void *) &js.eh_ss[0], sizeof(double), 3, js.jplfptr);
+
         for(int m=0;m<3;m++) {
           js.eh_ss[m]=js.jplfptr.readDouble();
         }
-//      if (js.do_reorder)
-//        reorder((char *) &js.eh_ss[0], sizeof(double), 3);
+
+
         
-//      fread((void *) &js.eh_ncon, sizeof(long), 1, js.jplfptr);
+
         js.eh_ncon=js.jplfptr.readInt();
-//      if (js.do_reorder)
-//        reorder((char *) &js.eh_ncon, sizeof(long), 1);
+
+
         
-//      fread((void *) &js.eh_au, sizeof(double), 1, js.jplfptr);
+
         js.eh_au=js.jplfptr.readDouble();
-//      if (js.do_reorder)
-//        reorder((char *) &js.eh_au, sizeof(double), 1);
+
+
         
-//      fread((void *) &js.eh_emrat, sizeof(double), 1, js.jplfptr);
+
         js.eh_emrat=js.jplfptr.readDouble();
-//      if (js.do_reorder)
-//        reorder((char *) &js.eh_emrat, sizeof(double), 1);
+
+
         
-//      fread((void *) &ipt[0], sizeof(long), 36, js.jplfptr);
+
         for(int m=0;m<36;m++) {
           ipt[m]=js.jplfptr.readInt();
         }
-//      if (js.do_reorder)
-//        reorder((char *) &ipt[0], sizeof(long), 36);
+
+
         
-//      fread((void *) &js.eh_denum, sizeof(long), 1, js.jplfptr);
+
         js.eh_denum=js.jplfptr.readInt();
-//      if (js.do_reorder)
-//        reorder((char *) &js.eh_denum, sizeof(long), 1);
-//      fread((void *) &lpt[0], sizeof(long), 3, js.jplfptr);
+
+
+
         for(int m=0;m<3;m++) {
           lpt_state[m]=js.jplfptr.readInt();
         }
-//      if (js.do_reorder)
-//        reorder((char *) &lpt[0], sizeof(long), 3);
+
+
         
-//      fseek(js.jplfptr, 1L * irecsz, 0);
+
         js.jplfptr.seek(1L * irecsz_state);
-//      fread((void *) &js.eh_cval[0], sizeof(double), 400, js.jplfptr);
+
         for(int m=0;m<400;m++) {
           js.eh_cval[m]=js.jplfptr.readDouble();
         }
-//      if (js.do_reorder)
-//        reorder((char *) &js.eh_cval[0], sizeof(double), 400);
+
+
         js.jplfptr.seek(2L * irecsz_state);
         for (i = 0; i < 3; ++i)
           ipt[i + 36] = lpt_state[i];
         nrl_state = 0;
         
         
-//      fseek(js.jplfptr, 0L, SEEK_END);
-//      flen = ftell(js.jplfptr);
+
+
         flen=js.jplfptr.length();
         
         nseg = (int) ((js.eh_ss[1] - js.eh_ss[0]) / js.eh_ss[2]);
@@ -25540,12 +25540,12 @@ class SwephJPL {
         nrl_state = nr;
         js.jplfptr.seek(nr * irecsz_state);
         for (k = 1; k <= ncoeffs_state; ++k) {
-//        if ( fread((void *) &buf[k - 1], sizeof(double), 1, js.jplfptr) != 1) {
+
 
           buf[k - 1]=js.jplfptr.readDouble();
-//        }
-//        if (js.do_reorder)
-//          reorder((char *) &buf[k-1], sizeof(double), 1);
+
+
+
         }
       }
       if (js.do_km) {
@@ -25611,19 +25611,19 @@ class SwephJPL {
     return SweConst.OK;
   }
 
-//  void reorder(char *x, int size, int number) {
-//    int i, j;
-//    char s[8];
-//    char *sp1 = x;
-//    char *sp2 = &s[0];
-//    for (i = 0; i < number; i++) {
-//      for (j = 0; j < size; j++)
-//        *(sp2 + j) = *(sp1 + size - j - 1);
-//      for (j = 0; j < size; j++)
-//        *(sp1 + j) = *(sp2 + j);
-//      sp1 += size;
-//    }
-//  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   void swi_close_jpl_file() {
     if (js != null) {
@@ -25697,7 +25697,7 @@ class JplSave {
   String jplfname=null;
   String jplfpath=null;
   FilePtr jplfptr=null;
-//  boolean do_reorder;
+
   double eh_cval[]=new double[400];
   double eh_ss[]=new double[3], eh_au, eh_emrat;
   int eh_denum, eh_ncon, eh_ipt[]=new int[39];
@@ -26335,22 +26335,22 @@ class SwephMosh {
     iline = 0;
     iplan = -1;
     try {
-//    while (fgets(s, AS_MAXCH, fp) != null)
+
       while ((s=fp.readLine()) != null) {
         s=s.trim();
-//        iline++;
-//        spIdx = 0;
-//        while(s.charAt(spIdx) == ' ' || s.charAt(spIdx) == '\t')
-//          spIdx++;
-//        s=s.substring(spIdx);
+
+
+
+
+
         sp = s;
         spIdx=0;
         char ch=s.charAt(spIdx);
         if (ch == '#' || ch=='\r' || ch=='\n' || ch=='\0') {
           continue;
         }
-//    if ((sp = strchr(s, '#')) != NULL)
-//      *sp = '\0';
+
+
         sp = null;
         if ((spIdx = s.indexOf('#')) >= 0) {
           s = s.substring(0,s.indexOf('#'));
@@ -26374,8 +26374,8 @@ class SwephMosh {
         
         if (tjd0 != null) {
           sp = cpos[0];
-//          for (i = 0; i < 5; i++)
-//       sp[i] = tolower(sp[i]);
+
+
           sp=sp.length()<=5?sp.toLowerCase():
                                sp.substring(0,5).toLowerCase()+sp.substring(5);
           if (sp.startsWith("j2000")) {
@@ -26389,7 +26389,7 @@ class SwephMosh {
               serr.setLength(0);
               serr.append(serri).append(" invalid epoch");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           } else
             tjd0.val = SwissLib.atof(sp);
@@ -26401,8 +26401,8 @@ class SwephMosh {
           spIdx=0;
           while(sp.charAt(spIdx) == ' ' || sp.charAt(spIdx) == '\t')
             spIdx++;
-//          for (i = 0; i < 5; i++)
-//       sp[i] = tolower(sp[i]);
+
+
           sp=sp.substring(spIdx);
           sp=sp.length()<5?sp.toLowerCase():
                                sp.substring(0,5).toLowerCase()+sp.substring(5);
@@ -26419,10 +26419,10 @@ class SwephMosh {
               serr.setLength(0);
               serr.append(serri).append(" invalid equinox");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           } else {
-//        *tequ = atof(sp);
+
             tequ.val = SwissLib.atof(sp);
           }
         }
@@ -26434,7 +26434,7 @@ class SwephMosh {
             if (serr != null) {
               serr.append(serri).append(" mean anomaly value invalid");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           }
           
@@ -26450,7 +26450,7 @@ class SwephMosh {
             if (serr != null) {
               serr.append(serri).append(" semi-axis value invalid");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           }
         }
@@ -26462,7 +26462,7 @@ class SwephMosh {
               serr.setLength(0);
               serr.append(serri).append(" eccentricity invalid (no parabolic or hyperbolic or bits allowed)");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           }
         }
@@ -26475,7 +26475,7 @@ class SwephMosh {
               serr.setLength(0);
               serr.append(serri).append(" perihelion argument value invalid");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           }
           parg.val *= SwissData.DEGTORAD;
@@ -26489,7 +26489,7 @@ class SwephMosh {
               serr.setLength(0);
               serr.append(serri).append(" node value invalid");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           }
           node.val *= SwissData.DEGTORAD;
@@ -26503,7 +26503,7 @@ class SwephMosh {
               serr.setLength(0);
               serr.append(serri).append(" inclination value invalid");
             }
-//          goto return_err;
+
             fp.close(); return SweConst.ERR;
           }
           incl.val *= SwissData.DEGTORAD;
@@ -26515,17 +26515,17 @@ class SwephMosh {
           while(sp.charAt(spIdx) == ' ' || sp.charAt(spIdx) == '\t')
             spIdx++;
           sp=sp.substring(spIdx);
-//      swi_right_trim(sp);
+
           sp=sp.trim();
           pname.setLength(0); pname.append(sp);
         }
         
         if (fict_ifl != null && ncpos > 9) {
-//          for (sp = cpos[9]; *sp != '\0'; sp++)
-//            *sp = tolower(*sp);
+
+
           sp = sp.substring(0,Math.min(sp.length(),spIdx+9)) +
                sp.substring(Math.min(sp.length(),spIdx+9)).toLowerCase();
-//          if (strstr(cpos[9], "geo") != NULL)
+
 //            fict_ifl.val |= FICT_GEO;
           if (cpos[9].indexOf("geo") >= 0) {
             fict_ifl.val |= FICT_GEO;
