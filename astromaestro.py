@@ -199,7 +199,7 @@ def gen_combined():
 
 
 if __name__ == "__main__":
-    #res = calculate_lewi_decans(decans)
-    #print (res)    
-    res = calculate_lewi("19730424")
-    print (res)
+    res = calculate_lewi_decans([4,29,1,4,32,32,8,21,25,19])
+    print (res)    
+    #res = calculate_lewi("19730424")
+    #print (res)

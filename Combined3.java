@@ -1,4 +1,7 @@
 /** commons-lang3-3.13.0.jar is needed for compilation **/
+import java.util.*;
+import java.util.stream.Collectors;
+import java.lang.Math;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.Calendar;
@@ -28703,4 +28706,285 @@ class DecanTest {
 	v.testLewi();
     }    
     
+}
+
+class DecanLewi {
+
+    // Equivalent to Python's global 'planets' list
+    private static final List<String> PLANETS = Collections.unmodifiableList(Arrays.asList(
+            "sun", "mo", "mer", "ven", "mar", "ju", "sa", "ur", "ne", "pl"
+    ));
+
+    // Equivalent to Python's numpy array for sun_moon_table
+    private static final int[][] SUN_MOON_TABLE = new int[12][12];
+
+    // Static initializer block to populate SUN_MOON_TABLE
+    static {
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+                SUN_MOON_TABLE[i][j] = (i * 12) + j + 1;
+            }
+        }
+    }
+
+    /**
+     * Initializes the mapping structure, equivalent to lewimap_init in Python.
+     * Uses nested Maps to simulate the Pandas DataFrame structure.
+     * @return A nested Map representing the astrological mapping.
+     */
+    public static Map<String, Map<String, Map<String, Integer>>> lewimapInit() {
+        Map<String, Map<String, Map<String, Integer>>> mapping = new HashMap<>();
+
+        // Helper function to reduce verbosity using a Java 8 BiConsumer
+        BiConsumer<String, String, Map<String, Integer>> addMapping = (planet, aspect, values) ->
+            mapping.computeIfAbsent(planet, k -> new HashMap<>()).put(aspect, values);
+
+        // --- Define Mappings (using Java 9+ Map.of for conciseness) ---
+        // Note: If using Java 8, replace Map.of with traditional HashMap puts.
+
+        // --- MO ---
+        addMapping.accept("mo", "tick", Map.of("sun",245,"mer",145,"ven",146,"mar",147,"ju",148,"sa",149,"ur",150,"ne",151,"pl",254));
+        Map<String, Integer> moTriStarMap = Map.of("sun",246,"mer",152,"ven",153,"mar",154,"ju",155,"sa",156,"ur",157,"ne",158,"pl",255);
+        addMapping.accept("mo", "tri", moTriStarMap);
+        addMapping.accept("mo", "*", moTriStarMap); // Same as tri
+        Map<String, Integer> moSqOppMap = Map.of("sun",247,"mer",159,"ven",160,"mar",161,"ju",162,"sa",163,"ur",164,"ne",165,"pl",256);
+        addMapping.accept("mo", "sq", moSqOppMap);
+        addMapping.accept("mo", "opp", moSqOppMap); // Same as sq
+
+        // --- UR ---
+        addMapping.accept("ur", "tick", Map.of("ne",242,"pl",272));
+        Map<String, Integer> urTriStarMap = Map.of("ne",243,"pl",273);
+        addMapping.accept("ur", "tri", urTriStarMap);
+        addMapping.accept("ur", "*", urTriStarMap); // Same as tri
+        Map<String, Integer> urSqOppMap = Map.of("ne",244,"pl",274);
+        addMapping.accept("ur", "sq", urSqOppMap);
+        addMapping.accept("ur", "opp", urSqOppMap); // Same as sq
+
+        // --- SUN ---
+        addMapping.accept("sun", "tick", Map.of("mer",166,"ven",167,"mar",168,"ju",169,"sa",170,"ur",171,"ne",172,"pl",251));
+        Map<String, Integer> sunTriStarMap = Map.of("ven",248,"mar",173,"ju",174,"sa",175,"ur",176,"ne",177,"pl",252);
+        addMapping.accept("sun", "tri", sunTriStarMap);
+        addMapping.accept("sun", "*", sunTriStarMap); // Same as tri
+        Map<String, Integer> sunSqOppMap = Map.of("mar",178,"ju",179,"sa",180,"ur",181,"ne",182,"pl",253);
+        addMapping.accept("sun", "sq", sunSqOppMap);
+        addMapping.accept("sun", "opp", sunSqOppMap); // Same as sq
+
+        // --- SA ---
+        addMapping.accept("sa", "tick", Map.of("ur",236,"ne",237,"pl",269));
+        Map<String, Integer> saTriStarMap = Map.of("ur",238,"ne",239,"pl",270);
+        addMapping.accept("sa", "tri", saTriStarMap);
+        addMapping.accept("sa", "*", saTriStarMap); // Same as tri
+        Map<String, Integer> saSqOppMap = Map.of("ur",240,"ne",241,"pl",271);
+        addMapping.accept("sa", "sq", saSqOppMap);
+        addMapping.accept("sa", "opp", saSqOppMap); // Same as sq
+
+        // --- MER ---
+        addMapping.accept("mer", "tick", Map.of("ven",183,"mar",184,"ju",185,"sa",186,"ur",187,"ne",188,"pl",257));
+        Map<String, Integer> merTriStarMap = Map.of("ven",189,"mar",190,"ju",191,"sa",192,"ur",193,"ne",194,"pl",258);
+        addMapping.accept("mer", "tri", merTriStarMap);
+        addMapping.accept("mer", "*", merTriStarMap); // Same as tri
+        Map<String, Integer> merSqOppMap = Map.of("mar",195,"ju",196,"sa",197,"ur",198,"ne",199,"pl",259);
+        addMapping.accept("mer", "sq", merSqOppMap);
+        addMapping.accept("mer", "opp", merSqOppMap); // Same as sq
+
+        // --- JU ---
+        addMapping.accept("ju", "tick", Map.of("sa",227,"ur",228,"ne",229,"pl",266));
+        Map<String, Integer> juTriStarMap = Map.of("sa",230,"ur",231,"ne",232,"pl",267);
+        addMapping.accept("ju", "tri", juTriStarMap);
+        addMapping.accept("ju", "*", juTriStarMap); // Same as tri
+        Map<String, Integer> juSqOppMap = Map.of("sa",233,"ur",234,"ne",235,"pl",268);
+        addMapping.accept("ju", "sq", juSqOppMap);
+        addMapping.accept("ju", "opp", juSqOppMap); // Same as sq
+
+        // --- VEN ---
+        addMapping.accept("ven", "tick", Map.of("mar",200,"ju",201,"sa",202,"ur",203,"ne",204,"pl",260));
+        Map<String, Integer> venTriStarMap = Map.of("mar",205,"ju",206,"sa",207,"ur",208,"ne",209,"pl",261);
+        addMapping.accept("ven", "tri", venTriStarMap);
+        addMapping.accept("ven", "*", venTriStarMap); // Same as tri
+        Map<String, Integer> venSqOppMap = Map.of("mar",210,"ju",211,"sa",212,"ur",213,"ne",214,"pl",262);
+        addMapping.accept("ven", "sq", venSqOppMap);
+        addMapping.accept("ven", "opp", venSqOppMap); // Same as sq
+
+        // --- MAR ---
+        addMapping.accept("mar", "tick", Map.of("ju",215,"sa",216,"ur",217,"ne",218,"pl",263));
+        Map<String, Integer> marTriStarMap = Map.of("ju",219,"sa",220,"ur",221,"ne",222,"pl",264);
+        addMapping.accept("mar", "tri", marTriStarMap);
+        addMapping.accept("mar", "*", marTriStarMap); // Same as tri
+        Map<String, Integer> marSqOppMap = Map.of("ju",223,"sa",224,"ur",225,"ne",226,"pl",265);
+        addMapping.accept("mar", "sq", marSqOppMap);
+        addMapping.accept("mar", "opp", marSqOppMap); // Same as sq
+
+        // --- NE ---
+        addMapping.accept("ne", "tick", Map.of("pl",275));
+        Map<String, Integer> neTriStarMap = Map.of("pl",276);
+        addMapping.accept("ne", "tri", neTriStarMap);
+        addMapping.accept("ne", "*", neTriStarMap); // Same as tri
+        Map<String, Integer> neSqOppMap = Map.of("pl",277);
+        addMapping.accept("ne", "sq", neSqOppMap);
+        addMapping.accept("ne", "opp", neSqOppMap); // Same as sq
+
+        return mapping;
+    }
+
+    /**
+     * Calculates Lewi results based on decan values.
+     * Equivalent to calculate_lewi_decans in Python.
+     * @param decans A List of 10 integers representing decan values for planets in PLANETS order.
+     * @return A sorted List of integers representing the results.
+     */
+    public static List<Integer> calculateLewiDecans(List<Integer> decans) {
+        if (decans == null || decans.size() != PLANETS.size()) {
+            throw new IllegalArgumentException("Decans list must contain " + PLANETS.size() + " elements.");
+        }
+
+        Map<String, Map<String, Map<String, Integer>>> smap = lewimapInit();
+        List<Integer> res = new ArrayList<>();
+
+        // Sun/Moon table calculation
+        // Find indices of sun and moon in the PLANETS list
+        int sunListIndex = PLANETS.indexOf("sun");
+        int moonListIndex = PLANETS.indexOf("mo");
+        if (sunListIndex == -1 || moonListIndex == -1) {
+            throw new IllegalStateException("Sun or Moon not found in PLANETS list definition.");
+        }
+
+        // Ensure floating point division by using 3.0
+        double sunDecan = decans.get(sunListIndex);
+        double moonDecan = decans.get(moonListIndex);
+
+        // Calculate 0-based index for SUN_MOON_TABLE
+        int sunTableIndex = (int) Math.ceil(sunDecan / 3.0) - 1;
+        int moonTableIndex = (int) Math.ceil(moonDecan / 3.0) - 1;
+
+        // Add boundary checks for safety
+        if (sunTableIndex >= 0 && sunTableIndex < 12 && moonTableIndex >= 0 && moonTableIndex < 12) {
+             res.add(SUN_MOON_TABLE[sunTableIndex][moonTableIndex]);
+        } else {
+             System.err.println("Warning: Calculated Sun/Moon index out of bounds (" + sunTableIndex + ", " + moonTableIndex + ").");
+        }
+
+
+        // Calculate angles
+        List<String> stepSigns = Arrays.asList("*", "sq", "tri", "opp", "tri", "sq", "*");
+        int[] steps = {6, 9, 12, 18, 24, 27, 30}; // Use primitive array
+
+        for (int i = 0; i < PLANETS.size(); i++) {
+            String planet = PLANETS.get(i);
+            int decan = decans.get(i);
+
+            // Calculate relative positions (relpos)
+            List<Integer> relpos = new ArrayList<>();
+            for (int step : steps) {
+                relpos.add((step + decan) % 36); // Modulo 36 for wrapping
+            }
+
+            // Iterate through relative positions and step signs
+            for (int j = 0; j < relpos.size(); j++) {
+                int pos = relpos.get(j);
+                String stepSign = stepSigns.get(j);
+
+                // Find planets matching the current position 'pos'
+                List<String> matchingPlanets = new ArrayList<>();
+                // List<Integer> matchingIndices = new ArrayList<>(); // Keep track of indices if needed
+                for (int k = 0; k < decans.size(); k++) {
+                    // Ensure comparison is between Integers (objects)
+                    if (decans.get(k).equals(pos)) {
+                        // matchingIndices.add(k);
+                        matchingPlanets.add(PLANETS.get(k));
+                    }
+                }
+
+                if (!matchingPlanets.isEmpty()) {
+                    for (String p : matchingPlanets) {
+                        // Check mapping validity (equivalent to 'not pd.isnull' and 'in')
+                        // Navigate nested maps safely
+                        Map<String, Map<String, Integer>> planetMap = smap.get(planet);
+                        if (planetMap != null) {
+                             Map<String, Integer> aspectMap = planetMap.get(stepSign);
+                             if (aspectMap != null && aspectMap.containsKey(p)) {
+                                 res.add(aspectMap.get(p));
+                             }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Calculate alignments (same decans)
+        for (int i = 0; i < decans.size(); i++) {
+            int dec = decans.get(i);
+            List<Integer> matchingIndices = new ArrayList<>();
+            for (int k = 0; k < decans.size(); k++) {
+                 if (decans.get(k).equals(dec)) {
+                    matchingIndices.add(k);
+                }
+            }
+
+            if (matchingIndices.size() > 1) { // More than one planet at this decan
+                String planetI = PLANETS.get(i);
+                for (int x : matchingIndices) {
+                    // Avoid self-comparison and double counting (i < x ensures each pair is checked once)
+                    if (i < x) {
+                         String planetX = PLANETS.get(x);
+                         // Check mapping validity for 'tick' aspect
+                         // Navigate nested maps safely
+                         Map<String, Map<String, Integer>> planetIMap = smap.get(planetI);
+                         if (planetIMap != null) {
+                             Map<String, Integer> tickMap = planetIMap.get("tick");
+                             if (tickMap != null && tickMap.containsKey(planetX)) {
+                                 res.add(tickMap.get(planetX));
+                             }
+                         }
+                    }
+                }
+            }
+        }
+
+        // Sort the results
+        Collections.sort(res);
+        // Optional: Remove duplicates if the Python version implicitly did so via sets somewhere not shown
+        // return res.stream().distinct().sorted().collect(Collectors.toList());
+
+        return res; // Keep duplicates as per direct translation of the provided code
+    }
+
+    // Main method mirroring the Python 'if __name__ == "__main__":' block
+    public static void main(String[] args) {
+        // Test data from the Python script
+        List<Integer> testDecans = Arrays.asList(4, 29, 1, 4, 32, 32, 8, 21, 25, 19);
+
+        // Ensure testDecans has the correct size
+        if (testDecans.size() != PLANETS.size()) {
+             System.err.println("Error: testDecans size (" + testDecans.size() + ") does not match PLANETS size (" + PLANETS.size() + ").");
+             return;
+        }
+
+        List<Integer> res = calculateLewiDecans(testDecans);
+
+        System.out.println("Calculated Lewi Decans: " + res);
+
+        // Values to check for presence
+        List<Integer> checkValues = Arrays.asList(22, 167, 194, 215, 220, 230, 259, 276);
+
+        // Check if all values in checkValues are present in the result list 'res'
+        // Equivalent to 'np.all([x in res for x in [...]' in Python
+        boolean allPresent = true;
+        for (int val : checkValues) {
+            if (!res.contains(val)) {
+                allPresent = false;
+                System.out.println("Value not found: " + val); // Added for detail
+                // break; // Uncomment if you only need to know if *at least one* is missing
+            }
+        }
+        // Alternative using streams:
+        // boolean allPresent = checkValues.stream().allMatch(res::contains);
+
+        System.out.println("All check values present in result? " + allPresent); // Should print true based on Python output expectation
+    }
+
+    // Needed for lewimapInit helper lambda (part of Java standard library since Java 8)
+    @FunctionalInterface
+    interface BiConsumer<T, U, V> {
+        void accept(T t, U u, V v);
+    }
 }
