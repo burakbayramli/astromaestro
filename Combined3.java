@@ -79,22 +79,18 @@ class CFmt {
   public String fmt( String conv, byte bval ) {
     return intFmt(conv, (long) bval, 'b');
   }
-  // integer d,i,o,p,u,x,X:
   
   public String fmt( String conv, int ival  ) {
     return intFmt(conv, (long) ival, 'i');
   }
-  // long d,i,o,p,u,x,X:
   
   public String fmt( String conv, long lval  ) {
     return intFmt(conv, lval, 'l');
   }
-  // float f, e, E, g, G:
   
   public String fmt( String conv, float fval  ) {
     return fmt( conv, (double)fval );
   }
-  // double f, e, E, g, G:
   
   public String fmt( String conv, double dval  ) {
     CFmtCvt cv = new CFmtCvt(conv);
@@ -113,11 +109,7 @@ class CFmt {
     if (res=="") {
       if (!cv.withPrec) { cv.precision=6; cv.withPrec=true; }
       if (cv.type=='g' || cv.type=='G') { isG=true; }
-double dval_tmp=dval; // postpone rounding
-      // Rounding:
-      // cv.precision:
-      // e, E, f: no. of digits after decimalpoint
-      // g, G   : max. no. of significant digits
+double dval_tmp=dval; 
       int pexp=0;
       int nexp=0;
       if (dval_tmp!=0.) {
@@ -135,10 +127,6 @@ double dval_tmp=dval; // postpone rounding
           }
         }
       }
-      // Mapping 'g' and 'G' to 'f', 'e' or 'E' and changing the meaning
-      // of 'precision' to the meaning of precision in 'f, 'e', 'E'
-      // (precision='f', 'e', 'E': Count of digits after the decimalpoint
-      //            'g', 'G':      Count of all signifikant digits):
       if (isG) {
         if (dval_tmp!=0. && (dval_tmp<1E-4 || dval_tmp>=Math.pow(10,cv.precision))) {
           if (cv.precision>0) { cv.precision--; } // Digit before decimalpoint
@@ -158,10 +146,7 @@ double dval_tmp=dval; // postpone rounding
       String mantisse="";
       int exponent=0;
       int i;
-      // Zahl zerlegen in Integer-Anteil, Mantisse und Exponenten:
-//DevNull.println("\n@@@ "+Long.toBinaryString(Double.doubleToLongBits(dval)));
 res=dblToString(dval,cv.precision); // Includes rounding!!!
-//DevNull.println(">>> "+res);
       exponent=res.indexOf(".")-1;
       integer=res.substring(0,exponent+1);
       mantisse=res.substring(exponent+2);
@@ -196,19 +181,14 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
         mantisse=integer.substring(1);
         integer=integer.substring(0,1);
       }
-      // Precision:
       if (cv.precision>320) { cv.precision=320; }
-      // Count of digits after the decimalpoint:
       int len=mantisse.length();
       if (cv.precision>len && (!isG || cv.fHash)) {
-        // Add '0's:
         mantisse+=zeros.substring(0,cv.precision-len);
       } else if (cv.precision<len) {
-        // Truncate:
         mantisse=mantisse.substring(0,cv.precision);
       }
       if (isG && !cv.fHash) {
-        // Truncate leftover zeros at the end of the mantissa:
         i=mantisse.length()-1;
         while (i>=0 && mantisse.charAt(i)=='0') {
           i--;
@@ -378,8 +358,7 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
   private String dblToString(double d, int prec) {
     long exp, i, lMant;
     boolean nexp=false;
-//
-//
+
     lMant=Double.doubleToLongBits(d)&0x000fffffffffffffL;
     exp =(Double.doubleToLongBits(d)&0x3ff0000000000000L) >> 52;
     nexp=(Double.doubleToLongBits(d)&0x4000000000000000L) == 0L;
@@ -531,12 +510,8 @@ class Extensions {
       above = (val >= offset);
       lastJD = jdET;
       lastVal = val;
-      //while (tc.rollover && val<offset) { val += tc.rolloverVal; }
       if (tc.rollover && !above) { val += tc.rolloverVal; }
-      // Find next reasonable point to probe.
       if (tc.rollover) {
-        // In most cases here we cannot find out for sure if the distance
-        // is decreasing or increasing. We take the smaller one of these:
         jdPlus  = Math.min(val-offset,360-val+offset)/Math.abs(max);
         jdMinus = Math.min(val-offset,360-val+offset)/Math.abs(min);
         if (back) {
@@ -544,9 +519,7 @@ class Extensions {
         } else {
           jdET += Math.min(jdPlus,jdMinus);
         }
-      } else { // Latitude, distance and speed calculations...
-        //jdPlus = (back?(val-offset):(offset-val))/max;
-        //jdMinus = (back?(val-offset):(offset-val))/min;
+      } else { 
         jdPlus = (offset-val)/max;
         jdMinus = (offset-val)/min;
         if (back) {
@@ -569,27 +542,18 @@ class Extensions {
           }
         }
       }
-      // Add at least "timePrec" time to the last time:
       if (Math.abs(jdET - lastJD) < timePrec) {
         jdET = lastJD + (back?-timePrec:+timePrec);
       }
       if (jdET == lastJD) {
-//System.err.println(" =t " + (""+val).substring(0,Math.min((""+val).length(),12)) + " " + jdET);
         return jdET;
       }
       val = tc.calc(jdET);
       if (tc.rollover && val >= tc.rolloverVal) { val %= tc.rolloverVal; }
       while (tc.rollover && val < 0.) { val += tc.rolloverVal; }
-      // Hits the transiting point exactly...:
       if (offset-val == 0.) {
-//System.err.println(" =v " + (""+val).substring(0,Math.min((""+val).length(),12)) + " " + jdET);
         return jdET;
       }
-      // The planet may have moved forward or backward, in one of these
-      // directions it would have crossed the transit point.
-      //
-      // Whatever distance could have been reached in lesser time (forward or
-      // backward move), we take it to be the direction of movement.
       boolean pxway = true;
       if (tc.rollover) {
         double deltadeg1 = val-lastVal;
@@ -620,7 +584,6 @@ class Extensions {
               );
       if (found) { // Return an interpolated value, but not prior to (after)
                    // the initial time (if backward):
-//System.err.println(" :: (" + above + " && " + val + "<=" + offset + " && !" + pxway + ") || " );
         if (tc.rollover) {
           if (tc.rollover && Math.abs(val - lastVal) > 300.) {   // How to do it formally correct???
             // Probably one value is about 359.99 and the other one is in the area of 0.01
@@ -635,7 +598,6 @@ class Extensions {
           }
         }
         double jdRet = lastJD+(jdET-lastJD)*(offset-lastVal)/(val-lastVal);
-//System.err.println(" fd " + ("  "+val).substring(1).substring(0,12) + " " + Math.min(jdRet,jdET));
         if (back) {
           return Math.max(jdRet, jdET);
         } else {
@@ -644,7 +606,6 @@ class Extensions {
       }
       if ((back && jdET < jdMax) ||
           (!back && jdET > jdMax)) {
-//System.err.println(" ex " + ("  "+val).substring(1).substring(0,12) + " " + jdET);
         throw new SwissephException(jdET, SwissephException.BEYOND_USER_TIME_LIMIT,
             -1, "User time limit of " + jdMax + " has been reached.");
       }
@@ -677,6 +638,7 @@ class Extensions {
      2.570197288,    // I Vesta      == 20
   };
 }
+
 class FileData {
   final byte SEI_FILE_NMAXPLAN=50;
   String fnam;          
@@ -715,15 +677,12 @@ class FileData {
     int i, ipli, kpl;
     int fendian, freord;
     int lastnam = 19;
-//Renamed in JAVA to fptr:// FilePtr fp;
     long lng;
     long ulng; // hat 'unsigned' long hier eine wesentliche Bedeutung?
     long flen, fpos;
     short nplan;
     PlanData pdp;
-//Skipped in JAVA:// FileData fdp = swed.fidat[ifno];
     String serr_file_damage = "Ephemeris file "+fnam+" is damaged. ";
-//Skipped in JAVA:// int errmsglen = serr_file_damage.length();
     int nbytes_ipl = 2;
     try {
       
@@ -1252,9 +1211,7 @@ int kCnt;
     }
   }
   
-} // Ende der Klasse FileData.
-//////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////
+} 
 class FilePtr {
   public static final String useragent="swisseph-java-1.70.03(00)";
   private static final int MAX_FAILURES=100;
@@ -1358,8 +1315,6 @@ class FilePtr {
   }
   
   public void close() throws IOException {
-////#ifdef TRACE0
-////#endif 
     try {
       fnamp="";
       if (fp!=null) { fp.close(); }
@@ -1375,31 +1330,20 @@ class FilePtr {
         is=null;
         os=null;
       } catch (IOException ies) {
-////#ifdef TRACE0
-////#endif 
         throw ies;
       }
-////#ifdef TRACE0
-////#endif 
       throw ie;
     }
-////#ifdef TRACE0
-////#endif 
   }
   
   public long getFilePointer() {
-////#ifdef TRACE0
-////#endif 
     return fpos;
   }
   
   public long length() throws IOException {
-////#ifdef TRACE0
-////#endif 
     if (fp!=null && savedLength<0) { savedLength=fp.length(); }
     if (fp!=null || savedLength>=0) {
-////#ifdef TRACE0
-////#endif 
+
       return savedLength;
     }
     long len=0;
@@ -1415,8 +1359,6 @@ class FilePtr {
         sout=URLread(is);
       } catch (IOException ioe) {
         if (++failures>=MAX_FAILURES) {
-////#ifdef TRACE0
-////#endif 
           throw new IOException("(java.net.SocketException) "+ioe.getMessage());
         }
         reconnect();
@@ -1425,8 +1367,6 @@ class FilePtr {
       rc=checkHeader(sout);
       if (rc<0) { // What has happened? Invalid header?
         if (++failures>=MAX_FAILURES) {
-////#ifdef TRACE0
-////#endif 
           throw new IOException("Failed to read a valid / complete header.");
         }
         reconnect();
@@ -1440,117 +1380,66 @@ class FilePtr {
       sout=sout.substring(0,sout.indexOf("\n")).trim();
       len=Long.parseLong(sout);
     } else {
-////#ifdef TRACE0
-////#endif 
       throw new IOException("Can't determine length of (HTTP-)file '"+fnamp+
                             "'. HTTP error code: "+rc);
     }
-////#ifdef TRACE0
-////#endif 
     return len;
   }
   
   public void seek(long pos) {
-////#ifdef TRACE0
-////#endif 
     fpos=pos;
   }
   
   void skipBytes(int count) throws IOException {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
     if (fpos+count>=length()) {
-////#ifdef TRACE0
-////#endif 
       throw new EOFException("Filepointer position "+(fpos+count)+" exceeds "+
                              "file length by "+(fpos+count-length()+1)+
                              " byte(s).");
     }
     fpos+=count;
-////#ifdef TRACE0
-////#endif 
   }
-//
-//
-//
+
   private String URLread(InputStream is) throws IOException {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
     StringBuffer sret=new StringBuffer("");
     int av = is.read();
     if (av == -1) {
-////#ifdef TRACE0
-////#endif 
       throw new IOException("No bytes available.");
     }
     sret.append((char)av);
     while (is.available()>0) {
       sret.append((char)is.read());
     }
-////#ifdef TRACE0
-////#endif 
     return sret.toString();
   }
   private void URLwrite(BufferedOutputStream os, String s) throws IOException {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
     for(int n=0; n<s.length(); n++) {
       os.write((byte)s.charAt(n));
     }
-////#ifdef TRACE0
-////#endif 
     os.flush();
   }
-  // Returns the data part of the html response in String s
   private String htmlStrip(String s) {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
     int idx=s.indexOf("\r\n\r\n");
-////#ifdef TRACE0
-////#endif 
     if (idx>=0) {
       return s.substring(idx+4);
     }
     return "";
   }
-  // Returns the http return code or -1, if not available
   private int checkHeader(String s) {
-////#ifdef TRACE0
-////#ifdef TRACE1
-////#endif 
-////#endif 
+
     try {
       int ix1=s.indexOf(" ");
       int ix2=s.indexOf(" ",ix1+1);
-////#ifdef TRACE0
-////#endif 
       if (ix1<0 || ix2<0 || ix1<8 || ix1+4!=ix2) { return -1; }
       return Integer.parseInt(s.substring(ix1+1,ix2));
     } catch (NumberFormatException nf) {
-////#ifdef TRACE0
-////#endif 
       return -1;
     }
   }
-  // Reads a chunk of data to the buffer data[][idx]
   private void readToBuffer() throws IOException, EOFException {
-////#ifdef TRACE0
-////#endif 
-    // Directly reading a file:
     if (fp!=null) { 
       fp.seek(fpos);
       int cnt=fp.read(inbuf);
       if (cnt==-1) {
-////#ifdef TRACE0
-////#endif 
         throw new EOFException("Filepointer position "+fpos+" exceeds file"+
                                " length by "+(fpos-length()+1)+" byte(s).");
       }
@@ -1559,14 +1448,9 @@ class FilePtr {
       } 
       startIdx[idx]=fpos;
       endIdx[idx]=fpos+cnt-1;
-////#ifdef TRACE0
-////#endif 
       return;
     }
-    // Reading via http:
     if (fpos>=length()) {
-////#ifdef TRACE0
-////#endif 
       throw new EOFException("Filepointer position "+fpos+" exceeds file "+
                              "length by "+(fpos-length()+1)+" byte(s).");
     }
@@ -1584,8 +1468,6 @@ class FilePtr {
         sout=URLread(is);
       } catch (IOException ioe) {
         if (++failures>=MAX_FAILURES) {
-////#ifdef TRACE0
-////#endif 
           throw new IOException("(java.net.SocketException) "+ioe.getMessage());
         }
         reconnect();
@@ -1594,8 +1476,6 @@ class FilePtr {
       int rc=checkHeader(sout);
       if (rc<0) { // What has happened?
         if (++failures>=MAX_FAILURES) { // Too many failures in a row, abort:
-////#ifdef TRACE0
-////#endif 
           throw new IOException("Failed to read successfully from address\n'"+
                                 fnamp+"'. The http reply from the server was "+
                                 sout.length()+
@@ -1609,8 +1489,6 @@ class FilePtr {
           slen>BUFSIZE ||
           (slen<BUFSIZE && savedLength>=0 && fpos+slen != savedLength)) {
         if (++failures>=MAX_FAILURES) {
-////#ifdef TRACE0
-////#endif 
           throw new IOException("HTTP read failed with HTTP response "+rc+
                                 ". Read "+slen+" bytes, requested "+BUFSIZE+
                                 " bytes.");
@@ -1619,8 +1497,6 @@ class FilePtr {
       }
       if (slen==0) { // How is this to happen???
         if (++failures>=MAX_FAILURES) {
-////#ifdef TRACE0
-////#endif 
           throw new EOFException("Filepointer position "+fpos+" exceeds file "+
                                  "length by "+(fpos-length()+1)+" byte(s).");
         }
@@ -1633,12 +1509,8 @@ class FilePtr {
     for(int n=0;n<slen;n++) {
       data[n][idx]=(byte)sout.charAt(n);
     }
-////#ifdef TRACE0
-////#endif 
   }
   private void reconnect() throws IOException {
-////#ifdef TRACE0
-////#endif 
 System.err.println("reconnecting...");
     sk.close();
     sk=new Socket(host,port);
@@ -21873,13 +21745,6 @@ class SwissEph {
         return null;
     }
     private FilePtr tryFileAsURL(String fnamp, int ifno) {
-        ////#ifdef TRACE0
-        //    Trace.level++;
-        //    Trace.trace(Trace.level, "SwissEph.tryFileAsURL(String, int)");
-        ////#ifdef TRACE1
-        //    DevNull.println("    fnamp: " + fnamp + "\n    ifno: " + ifno);
-        ////#endif 
-        ////#endif 
         Socket sk=null;
         try {
             URL u=new URL(fnamp);
@@ -21902,9 +21767,6 @@ class SwissEph {
             int idx=sret.indexOf("Content-Length:");
             if (idx < 0) {
                 sk.close();
-                ////#ifdef TRACE0
-                //        Trace.level--;
-                ////#endif 
                 return null;
             }
             // We need to query ranges, otherwise it will not make much sense...
@@ -21912,9 +21774,7 @@ class SwissEph {
                 System.err.println("Server does not accept HTTP range requests. "+
                                    "Aborting!");
                 sk.close();
-                ////#ifdef TRACE0
-                //        Trace.level--;
-                ////#endif 
+
                 return null;
             }
             sret=sret.substring(idx+"Content-Length:".length());
@@ -21924,9 +21784,6 @@ class SwissEph {
             if (ifno >= 0) {
                 swed.fidat[ifno].fnam=fnamp;
             }
-            ////#ifdef TRACE0
-            //      Trace.level--;
-            ////#endif 
             return new FilePtr(null,sk,is,os,fnamp,len,httpBufSize);
         } catch (MalformedURLException m) {
         } catch (IOException ie) {
@@ -21937,9 +21794,7 @@ class SwissEph {
         try { sk.close(); }
         catch (IOException e) { }
         catch (NullPointerException np) { }
-        ////#ifdef TRACE0
-        //    Trace.level--;
-        ////#endif 
+
         return null;
     }
     
@@ -24661,28 +24516,11 @@ class SwissEph {
         return SweConst.OK;
     }
     double dot_prod(double x[], double y[]) {
-        ////#ifdef TRACE0
-        //    Trace.level++;
-        //    Trace.trace(Trace.level, "SwissEph.dot_prod(double[], double[])");
-        ////#ifdef TRACE1
-        //    Trace.printDblArr("x", x);
-        //    Trace.printDblArr("y", y);
-        ////#endif 
-        //    Trace.level--;
-        ////#endif 
+
         return x[0]*y[0]+x[1]*y[1]+x[2]*y[2];
     }
     double dot_prod(double x[], double y[], int yOffs) {
-        ////#ifdef TRACE0
-        //    Trace.level++;
-        //    Trace.trace(Trace.level, "SwissEph.dot_prod(double[], double[], int)");
-        ////#ifdef TRACE1
-        //    Trace.printDblArr("x", x);
-        //    Trace.printDblArr("y", y);
-        //    DevNull.println("    yOffs: " + yOffs);
-        ////#endif 
-        //    Trace.level--;
-        ////#endif 
+
         return x[0]*y[yOffs]+x[1]*y[1+yOffs]+x[2]*y[2+yOffs];
     }
     
@@ -24691,17 +24529,9 @@ class MeffEle {
     double r;
     double m;
     MeffEle(double r, double m) {
-        ////#ifdef TRACE0
-        //    Trace.level++;
-        //    Trace.trace(Trace.level, "MeffEle(double, double)");
-        ////#ifdef TRACE1
-        //    DevNull.println("    r: " + Trace.fmtDbl(r) + "\n    m: " + Trace.fmtDbl(m));
-        ////#endif 
-        ////#endif 
+
         this.r=r; this.m=m;
-        ////#ifdef TRACE0
-        //    Trace.level--;
-        ////#endif 
+
     }
 }
 class SwissLib {
