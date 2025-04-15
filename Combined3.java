@@ -16909,8 +16909,6 @@ class SwephData {
   static final double TNODE_MIN_HELIO_DIST_SPEED = 1./0.;
   static final double TNODE_MAX_HELIO_DIST_ACCEL = 1./0.;
   static final double TNODE_MIN_HELIO_DIST_ACCEL = 1./0.;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double MAPOGEE_MAX_LON_SPEED = 0.114;
   static final double MAPOGEE_MIN_LON_SPEED = 0.113;
   static final double MAPOGEE_MAX_LON_ACCEL = 0.000031;
@@ -16948,8 +16946,6 @@ class SwephData {
   static final double MAPOGEE_MIN_HELIO_DIST_SPEED = 1./0.;
   static final double MAPOGEE_MAX_HELIO_DIST_ACCEL = 1./0.;
   static final double MAPOGEE_MIN_HELIO_DIST_ACCEL = 1./0.;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double OAPOGEE_MAX_LON_SPEED = 6.5; // ???
   static final double OAPOGEE_MIN_LON_SPEED = -3.9; // ???
   static final double OAPOGEE_MAX_LON_ACCEL = 2.12; // ???
@@ -16986,8 +16982,6 @@ class SwephData {
   static final double OAPOGEE_MIN_HELIO_DIST_SPEED = 1./0.;
   static final double OAPOGEE_MAX_HELIO_DIST_ACCEL = 1./0.;
   static final double OAPOGEE_MIN_HELIO_DIST_ACCEL = 1./0.;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double CHIRON_MAX_LON_SPEED = 0.1481;
   static final double CHIRON_MIN_LON_SPEED = -0.08136;
   static final double CHIRON_MAX_LON_ACCEL = 0.001985;
@@ -17024,8 +17018,6 @@ class SwephData {
   static final double CHIRON_MIN_HELIO_DIST_SPEED = -0.0020787;
   static final double CHIRON_MAX_HELIO_DIST_ACCEL = 0.0000023777;
   static final double CHIRON_MIN_HELIO_DIST_ACCEL = -0.0000012240;
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
   static final double PHOLUS_MAX_LON_SPEED = 0.144;
   static final double PHOLUS_MIN_LON_SPEED = -0.083;
   static final double PHOLUS_MAX_LON_ACCEL = 0.00202;
