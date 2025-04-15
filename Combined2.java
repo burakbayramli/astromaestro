@@ -569,11 +569,6 @@ class DblObj {
   
   public double val;
 
-// //#ifdef TRACE0
-//   public DblObj() {
-//     DevNull.println(System.currentTimeMillis()+" DblObj()");
-//   }
-// //#endif /* TRACE0 */
 
 }
 
@@ -589,7 +584,7 @@ class DevNull {
 }
 
 class Epsilon {
-  /* obliquity of ecliptic */
+  
   double teps, eps, seps, ceps;         /* jd, eps, sin(eps), cos(eps) */
 
   void clearData() {
@@ -601,13 +596,7 @@ class Epsilon {
 
 
 }
-/*
-   This is an extension to the Java port of the Swiss Ephemeris package
-   of Astrodienst AG, Zuerich (Switzerland).
 
-   Thomas Mack, mack@ifis.cs.tu-bs.de, 3rd of December, 2001
-
-*/
 
 
 
@@ -621,41 +610,9 @@ class Extensions {
   }
 
 
-
-
-  // transitVal is the longitude or latitude or speed, for which the
-  // transit is to be calculated.
-  // getTransit() will return the current date and time, when the
-  // transit ist occuring on that date. If you really want the next
-  // transit AFTER that date, add at least calcTimePrecision(...) to
-  // your jdET, as this is the minimum time difference, for which the
-  // available precision allows.
-  // You can NOT rely on the assumption that you will get realistically
-  // differentiable transit values with a time difference of
-  // calcTimePrecision(...), but at least it does not make ANY sense
-  // to recalculate a transit with a time difference SMALLER than the
-  // value returned by calcTimePrecision().
-  //
-  // A problem:
-  // When a transit takes a long time, this means, when the planet
-  // stays a long time very near to the transit point, the program
-  // may appear to be abitrary in its results. The reason is, that
-  // it does not look for the EXACT transit point, but for an area
-  // around the exact transit point that is defined by the maximum
-  // available precision for the position calculation.
-
-  // You may get many transits for just one planetary transit, as we
-  // cannot differentiate transits, when they are in an area of values
-  // which is beyond the maximum available precision. E.g., when the
-  // sun is in the latitudinal area of 0.0019 to 0.0021 for maybe two
-  // days, there is no chance to differentiate between any dates in
-  // this area of time: You will get the input date returned as the
-  // transit date always, when the input date is in the area of these
-  // two days.
   double getTransit(TransitCalculator tc, double jdET, boolean back,
                     double jdMax)
          throws IllegalArgumentException, SwissephException {
-//System.err.println(" -- " + (""+jdET).substring(0,Math.min((""+jdET).length(),12)) + " - " + jdMax);
     double max = tc.getMaxSpeed();
     double min = tc.getMinSpeed();
 
@@ -862,27 +819,20 @@ class Extensions {
 
 
 }
-/*
-   This is an extension to the Java port of the Swiss Ephemeris package
-   of Astrodienst AG, Zuerich (Switzerland).
 
-   Thomas Mack, mack@ifis.cs.tu-bs.de, 25th of November, 2004
-
-*/
 
 class FileData {
   final byte SEI_FILE_NMAXPLAN=50;
 
-  String fnam;          /* ephemeris file name */
-  int fversion;         /* version number of file */
-  String astnam;        /* asteroid name, if asteroid file */
-  int sweph_denum;     /* DE number of JPL ephemeris, which this file
-                         * is derived from. */
-  FilePtr fptr;/* ephemeris file pointer */
-  double tfstart;       /* file may be used from this date */
-  double tfend;         /*      through this date          */
-  int iflg;             /* byte reorder flag and little/bigendian flag */
-  short npl;            /* how many planets in file */
+  String fnam;          
+  int fversion;         
+  String astnam;        
+  int sweph_denum;     
+  FilePtr fptr;
+  double tfstart;       
+  double tfend;         
+  int iflg;             
+  short npl;            
   int ipl[] = new int[SEI_FILE_NMAXPLAN]; /* planet numbers */
 
   void clearData() {
@@ -908,11 +858,7 @@ class FileData {
 // "ifno" has to be the first parameter in read_const:
 //  struct FileData *fdp = &swed.fidat[ifno];
 //
-  /* SWISSEPH
-   * reads constants on ephemeris file
-   * ifno         file #
-   * serr         error string
-   */
+  
   int read_const(int ifno, StringBuffer serr, SwissData swed) {
     String s="";
     String s2="";
@@ -994,8 +940,7 @@ class FileData {
           b=fptr.readByte();
           s+=(char)b;
         } while (cLast!='\r' && (char)(b)!='\n' && s.length()<SwissData.AS_MAXCH*2);
-        /* MPC number and name; will be analyzed below:
-         * search "asteroid name" */
+        
         String sp = s;
         // Strip leading white space from 'sp':
         while(Character.isWhitespace(sp.charAt(0))) {
@@ -1009,23 +954,23 @@ class FileData {
         sp = sp.substring(1);
         i = s.length() - sp.length();
         sastnam = sp.substring(0,lastnam+i);
-        /* save elements, they are required for swe_plan_pheno() */
+        
         swed.astelem = s;
-        /* required for magnitude */
+        
         swed.ast_H = SwissLib.atof(s.substring(35 + i));
         swed.ast_G = SwissLib.atof(s.substring(42 + i));
         if (swed.ast_G == 0) swed.ast_G = 0.15;
-        /* diameter in kilometers, not always given: */
+        
         s2 = s.substring(51 + i, 58 + i);
         swed.ast_diam = SwissLib.atof(s2);
         if (swed.ast_diam == 0) {
-          /* estimate the diameter from magnitude; assume albedo = 0.15 */
+          
           swed.ast_diam = 1329/Math.sqrt(0.15) * Math.pow(10, -0.2 * swed.ast_H);
         }
       }
       
       int testendian = fptr.readInt();
-      /* is byte order correct?            */
+      
 lng = 0;
       if (testendian == SwephData.SEI_FILE_TEST_ENDIAN) {
         freord = SwephData.SEI_FILE_NOREORD;
@@ -1040,8 +985,7 @@ lng = 0;
               SweConst.ERR, "File is damaged: byte ordering info not correct.");
         }
       }
-      /* is file bigendian or littlendian?
-       * test first byte of test integer, which is highest if bigendian */
+      
       if (SwephData.SEI_FILE_TEST_ENDIAN / 16777216 ==
           (testendian & 0x000000ff)) {
         fendian = SwephData.SEI_FILE_BIGENDIAN;
@@ -1081,7 +1025,7 @@ lng = 0;
             SweConst.ERR, serr);
       }
       npl = nplan;
-      /* which ones?                       */
+      
 //do_fread((void *) fdp->ipl, nbytes_ipl, (int) nplan, sizeof(int), fp,...
 //          target            how many      count      how many
 //                          bytes to read           bytes to write
@@ -1596,13 +1540,6 @@ class FilePtr {
                  String fnamp,
                  long fileLength,
                  int bufsize) throws IOException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr(RandomAccessFile, Socket, InputStream, BufferedOutputStream, String, long, int)");
-////#ifdef TRACE1
-//    DevNull.println("    fp: " + fp + "\n    sk: " + sk + "\n    is: " + is + "\n    os: " + os + "\n    fnamp: " + fnamp + "\n    fileLength: " + fileLength + "\n    bufsize: " + bufsize);
-////#endif /* TRACE1 */
-////#endif /* TRACE0 */
     this.fp=fp;
     this.sk=sk;
     this.is=is;
@@ -1622,15 +1559,9 @@ class FilePtr {
         port=u.getPort();
         if (port<0) { port=80; } // Default port for http...
       } catch ( MalformedURLException me) {
-////#ifdef TRACE0
-//        Trace.level--;
-////#endif /* TRACE0 */
         throw new IOException("Malformed URL '"+fnamp+"'");
       }
     }
-////#ifdef TRACE0
-//    Trace.level--;
-////#endif /* TRACE0 */
   }
 
 
@@ -1638,48 +1569,26 @@ class FilePtr {
 
   
   public byte readByte() throws IOException, EOFException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readByte()");
-////#endif /* TRACE0 */
     if (startIdx[idx]<0 || fpos<startIdx[idx] || fpos>endIdx[idx]) {
       readToBuffer();
     }
     fpos++;
-////#ifdef TRACE0
-//    Trace.level--;
-////#endif /* TRACE0 */
     return data[(int)(fpos-1-startIdx[idx])][idx];
   }
 
   
   public int readUnsignedByte() throws IOException, EOFException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readUnsignedByte()");
-//    Trace.level--;
-////#endif /* TRACE0 */
     return ((int)readByte()) & 0xff;
   }
 
 
   
   public short readShort() throws IOException, EOFException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readShort()");
-//    Trace.level--;
-////#endif /* TRACE0 */
     return (short)((readByte()<<8)+readUnsignedByte());
   }
 
   
   public int readInt() throws IOException, EOFException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readInt()");
-//    Trace.level--;
-////#endif /* TRACE0 */
     return (((int)readByte())<<24)+
            (((int)readUnsignedByte())<<16)+
            (((int)readUnsignedByte())<<8)+
@@ -1688,10 +1597,6 @@ class FilePtr {
 
   
   public double readDouble() throws IOException, EOFException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readDouble()");
-////#endif /* TRACE0 */
     long ldb=(((long)readUnsignedByte())<<56)+
              (((long)readUnsignedByte())<<48)+
              (((long)readUnsignedByte())<<40)+
@@ -1700,18 +1605,11 @@ class FilePtr {
              (((long)readUnsignedByte())<<16)+
              (((long)readUnsignedByte())<<8)+
              (long)readUnsignedByte();
-////#ifdef TRACE0
-//    Trace.level--;
-////#endif /* TRACE0 */
     return Double.longBitsToDouble(ldb);
   }
 
   
   public String readLine() throws IOException, EOFException {
-////#ifdef TRACE0
-//    Trace.level++;
-//    Trace.trace(Trace.level, "FilePtr.readLine()");
-////#endif /* TRACE0 */
     String sout="";
     try {
       char ch;
@@ -1721,16 +1619,10 @@ class FilePtr {
       sout+=ch;
     } catch (EOFException e) {
       if (sout.length()==0) {
-////#ifdef TRACE0
-//        Trace.level--;
-////#endif /* TRACE0 */
         throw e;
       }
     }
 
-////#ifdef TRACE0
-//    Trace.level--;
-////#endif /* TRACE0 */
     return sout;
   }
 
@@ -7853,10 +7745,6 @@ class SweDate {
 
   private synchronized static double deltatIsDone(double ans, double Y,
                                                   double B, double tid_acc, int tabsiz, int tabend) {
-// //#ifdef TRACE0
-//     // Trace.level++; Don't increment here, as the calling method calc_deltat() does not decrement on return!
-//     Trace.trace(Trace.level, "SweDate.deltatIsDone(double, double, double, double, int, int)");
-// //#endif /* TRACE0 */
     double ans2, ans3, B2, dd;
     if (Y >= TABSTART && Y <= tabend) {
       ans *= 0.01;
@@ -9669,9 +9557,6 @@ class Swemmoon {
 
   Swemmoon() {
     this(null,null);
-// //#ifdef TRACE0
-//     DevNull.println(System.currentTimeMillis()+" Swemmoon()");
-// //#endif /* TRACE0 */
   }
 
   Swemmoon(SwissData swed, SwissLib sl) {
