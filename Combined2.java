@@ -35954,16 +35954,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     return fname;
   }
 
-  /*********************************************************
-   *  function for splitting centiseconds into             *
-   *  ideg        degrees,
-   *  imin        minutes,
-   *  isec        seconds,
-   *  dsecfr      fraction of seconds
-   *  isgn        zodiac sign number;
-   *              or +/- sign
-   *
-   *********************************************************/
+  
   public void swe_split_deg(double ddeg, int roundflag, IntObj ideg,
                             IntObj imin, IntObj isec, DblObj dsecfr,
                             IntObj isgn) {
@@ -36062,9 +36053,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
 // swejpl.c: /////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-  /*************************************
-  double to int32 with rounding, no overflow check
-  *************************************/
+  
   public int swe_d2l(double x) {
     if (x >=0.) {
       return ((int) (x + 0.5));
@@ -36073,13 +36062,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     }
   }
 
-  /**
-  * This calculates the difference of the two angles p1, p2 and normalizes
-  * them to a range of -180.0 <= x < 180.0 degrees.
-  * @param p1 The angle of point 1
-  * @param p2 The angle of point 2
-  * @return The normalized difference between p1, p2
-  */
+  
   public double swe_difdeg2n(double p1, double p2) {
     double dif;
     dif = swe_degnorm(p1 - p2);
@@ -36103,10 +36086,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
 //////////////////////////////////////////////////////////////////////////////
 // In this Java port only: ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-  /**
-  * This method emulates the C version of atof() allowing <i>any</i> string
-  * to be parsed into a number.
-  */
+  
   public static synchronized double atof(String src) {
     // atof() (in C) allows extra strings after the number, and even no number
     // at all, so we have to work around this...
@@ -36123,10 +36103,7 @@ if (Double.doubleToLongBits(coef[10]) == 0x3EF5D0AE131F86EEL) {
     return Double.valueOf(sout).doubleValue();
   }
 
-  /**
-  * This method emulates the C version of atoi() allowing <i>any</i> string
-  * to be parsed into an integer.
-  */
+  
   public static synchronized int atoi(String src) {
     // atoi() (in C) allows extra strings after the number, and even no number
     // at all, so we have to work around this...
@@ -36147,31 +36124,7 @@ static final double PREC_IAU_CTIES=2.0; // J2000 +/- two centuries
 } // End of class SwissLib.
 
 
-/**
-* This class implements a TransitCalculator for one planets
-* position or speed.<p>
-* You would create a TransitCalculator from this class and
-* use the SwissEph.getTransit() methods to actually calculate
-* a transit, e.g.:<p>
-* <pre>
-* SwissEph sw = new SwissEph(...);
-* ...
-* int flags = SweConst.SEFLG_SWIEPH |
-*             SweConst.SEFLG_TRANSIT_LONGITUDE
-*             SweConst.SEFLG_TRANSIT_SPEED;
-* boolean backwards = false;
-* 
-* TransitCalculator tc = new TCPlanet(
-*                                  sw,
-*                                  SweConst.SE_SATURN,
-*                                  flags,
-*                                  0);
-* ...
-* double nextTransitET = sw.getTransitET(tc, jdET, backwards);
-* </pre>
-* This would calculate the (ET-) date, when the Saturn will
-* change from retrograde to direct movement or vice versa.
-*/
+
 class TCPlanet extends TransitCalculator {
 
 
@@ -36189,35 +36142,7 @@ class TCPlanet extends TransitCalculator {
 double minVal = 0., maxVal = 0.;  // Thinking about it...
 
 
-  /**
-  * Creates a new TransitCalculator for transits of any of the planets
-  * positions (longitudinal / latitudinal and distance) or speeds, be
-  * it in the geocentric or topocentric coordinate system, or in tropical
-  * or sidereal zodiac.<p>
-  * @param sw A SwissEph object, if you have one available. Can be null.
-  * @param planet The transiting planet. Valid planets are SweConst.SE_SUN
-  * up to SweConst.SE_INTP_PERG with the exception of SweConst.SE_EARTH.
-  * @param flags The calculation type flags (SweConst.SEFLG_TRANSIT_LONGITUDE,
-  * SweConst.SEFLG_TRANSIT_LATITUDE or SweConst.SEFLG_TRANSIT_DISTANCE in
-  * conjunction with SweConst.SEFLG_TRANSIT_SPEED for transits over a speed
-  * value). Also flags modifying the basic planet calculations, these are
-  * SweConst.SEFLG_TOPOCTR, SweConst.SEFLG_HELCTR and SweConst.SEFLG_SIDEREAL,
-  * plus the ephemeris flags SweConst.SEFLG_MOSEPH, SweConst.SEFLG_SWIEPH or
-  * SweConst.SEFLG_JPLEPH optionally.
-  * @param offset This is the desired transit degree or transit speed.
-  * @see swisseph.TCPlanetPlanet#TCPlanetPlanet(SwissEph, int, int, int, double)
-  * @see swisseph.SweConst#SEFLG_TRANSIT_LONGITUDE
-  * @see swisseph.SweConst#SEFLG_TRANSIT_LATITUDE
-  * @see swisseph.SweConst#SEFLG_TRANSIT_DISTANCE
-  * @see swisseph.SweConst#SEFLG_TRANSIT_SPEED
-  * @see swisseph.SweConst#SEFLG_YOGA_TRANSIT
-  * @see swisseph.SweConst#SEFLG_TOPOCTR
-  * @see swisseph.SweConst#SEFLG_HELCTR
-  * @see swisseph.SweConst#SEFLG_SIDEREAL
-  * @see swisseph.SweConst#SEFLG_MOSEPH
-  * @see swisseph.SweConst#SEFLG_SWIEPH
-  * @see swisseph.SweConst#SEFLG_JPLEPH
-  */
+  
   public TCPlanet(SwissEph sw, int planet, int flags, double offset) {
     // Check parameter: //////////////////////////////////////////////////////
     // List of all valid flags:
@@ -36307,39 +36232,19 @@ double minVal = 0., maxVal = 0.;  // Thinking about it...
     min = getSpeed(true);
   }
 
-  /**
-  * @return Returns true, if one position value is identical to another
-  * position value. E.g., 360 degree is identical to 0 degree in
-  * circular angles.
-  * @see #rolloverVal
-  */
+  
   public boolean getRollover() {
     return rollover;
   }
-  /**
-  * This sets the degree or other value for the position or speed of
-  * the planet to transit. It will be used on the next call to getTransit().
-  * @param value The desired offset value.
-  * @see #getOffset()
-  */
+  
   public void setOffset(double value) {
     offset = checkOffset(value);
   }
-  /**
-  * This returns the degree or other value of the position or speed of
-  * the planet to transit.
-  * @return The currently set offset value.
-  * @see #setOffset(double)
-  */
+  
   public double getOffset() {
     return offset;
   }
-  /**
-  * This returns all the &quot;object identifiers s&quot; used in this
-  * TransitCalculator. It may be the planet number or planet numbers,
-  * when calculating planets.
-  * @return An array of identifiers identifying the calculated objects.
-  */
+  
   public Object[] getObjectIdentifiers() {
     return new Object[]{"" + planet};
   }
@@ -36591,33 +36496,7 @@ double minVal = 0., maxVal = 0.;  // Thinking about it...
 }
 
 
-/**
-* This class implements a TransitCalculator for two planets
-* in relative positions or speeds to each other.<p>
-* You would create a TransitCalculator from this class and
-* use the SwissEph.getTransit() methods to actually calculate
-* a transit, e.g.:<p>
-* <pre>
-* SwissEph sw = new SwissEph(...);
-* ...
-* int flags = SweConst.SEFLG_SWIEPH
-*             SweConst.SEFLG_TRANSIT_LATITUDE |
-*             SweConst.SEFLG_TRANSIT_SPEED;
-* boolean backwards = false;
-* 
-* TransitCalculator tc = new TCPlanetPlanet(
-*                                  sw,
-*                                  SweConst.SE_MERCURY,
-*                                  SweConst.SE_VENUS,
-*                                  flags,
-*                                  0.48);
-* ...
-* double nextTransitUT = sw.getTransitUT(tc, jdUT, backwards);
-* </pre>
-* This would calculate the (UT-) date, when Mercury and Venus will
-* have a very different latitudinal speed (and Mercury the higher
-* speed of both...).
-*/
+
 class TCPlanetPlanet extends TransitCalculator {
 
 
@@ -36639,45 +36518,7 @@ class TCPlanetPlanet extends TransitCalculator {
 double minVal = 0., maxVal = 0.;  // Thinking about it...
 
 
-  /**
-  * Creates a new TransitCalculator for relative transits of two different
-  * planets to each other with the option for transits over longitudes,
-  * latitudes, distance or the speed in any of these directions in the
-  * geocentric or topocentric coordinate system, and in tropical or sidereal
-  * zodiac system, both with the sum and difference of both planets positions
-  * and speeds.<p>
-  * @param sw A SwissEph object, if you have one available. Can be null.
-  * @param pl1 The first planet. Valid planets are SweConst.SE_SUN up to
-  * SweConst.SE_INTP_PERG with the exception of  SweConst.SE_EARTH.
-  * @param pl2 The second planet that will be transited by the first planet.
-  * @param flags The calculation type flags (SweConst.SEFLG_TRANSIT_LONGITUDE,
-  * SweConst.SEFLG_TRANSIT_LATITUDE or SweConst.SEFLG_TRANSIT_DISTANCE in
-  * conjunction with SweConst.SEFLG_TRANSIT_SPEED for transits over a speed
-  * value and SweConst.SEFLG_YOGA_TRANSIT to calculate for the SUM of the
-  * two positions or speeds instead of the difference). Also flags modifying
-  * the basic planet calculations, these are SweConst.SEFLG_TOPOCTR,
-  * SweConst.SEFLG_HELCTR and SweConst.SEFLG_SIDEREAL, plus the (optional)
-  * ephemeris flags SweConst.SEFLG_MOSEPH, SweConst.SEFLG_SWIEPH or
-  * SweConst.SEFLG_JPLEPH.
-  * @param offset This is an offset to the exact conjunction transit point.
-  * E.g., when the offset is 180 for longitude calculations, you will get the
-  * dates, when the two planets are opposite to each other. Note: The offset
-  * is related to the FIRST planet, so an offset value of 30 degree will find
-  * the transit points, when the FIRST planet will be 30 degrees behind the
-  * the position of the second planet.
-  * @see swisseph.TCPlanet#TCPlanet(SwissEph, int, int, double)
-  * @see swisseph.SweConst#SEFLG_TRANSIT_LONGITUDE
-  * @see swisseph.SweConst#SEFLG_TRANSIT_LATITUDE
-  * @see swisseph.SweConst#SEFLG_TRANSIT_DISTANCE
-  * @see swisseph.SweConst#SEFLG_TRANSIT_SPEED
-  * @see swisseph.SweConst#SEFLG_YOGA_TRANSIT
-  * @see swisseph.SweConst#SEFLG_TOPOCTR
-  * @see swisseph.SweConst#SEFLG_HELCTR
-  * @see swisseph.SweConst#SEFLG_SIDEREAL
-  * @see swisseph.SweConst#SEFLG_MOSEPH
-  * @see swisseph.SweConst#SEFLG_SWIEPH
-  * @see swisseph.SweConst#SEFLG_JPLEPH
-  */
+  
   public TCPlanetPlanet(SwissEph sw, int pl1, int pl2, int flags, double offset) {
     this.sw = sw;
     if (this.sw == null) {
@@ -36810,40 +36651,19 @@ double minVal = 0., maxVal = 0.;  // Thinking about it...
 
   }
 
-  /**
-  * @return Returns true, if one position value is identical to another
-  * position value. E.g., 360 degree is identical to 0 degree in
-  * circle angles.
-  * @see #rolloverVal
-  */
+  
   public boolean getRollover() {
     return rollover;
   }
-  /**
-  * This sets the transit degree or other transit value for the difference
-  * or sum of the positions or speeds of both planets. It will be used on
-  * the next call to getTransit().
-  * @param value The offset value.
-  * @see #getOffset()
-  */
+  
   public void setOffset(double value) {
     offset = checkOffset(value);
   }
-  /**
-  * This returns the transit degree or other transit value of the relative
-  * position or speed of the two planets.
-  * @return The current offset value.
-  * @see #setOffset(double)
-  */
+  
   public double getOffset() {
     return offset;
   }
-  /**
-  * This returns all the &quot;object identifiers s&quot; used in this
-  * TransitCalculator. It may be the planet number or planet numbers,
-  * when calculating planets.
-  * @return An array of identifiers identifying the calculated objects.
-  */
+  
   public Object[] getObjectIdentifiers() {
     return new Object[]{"" + pl1, "" + pl2};
   }
@@ -37130,33 +36950,13 @@ abstract class TransitCalculator {
   SwissEph sw;
 
   // This method changes the offset value for the transit
-  /**
-  * @return Returns true, if one position value is identical to another
-  * position value. E.g., 360 degree is identical to 0 degree in
-  * circular angles.
-  * @see #rolloverVal
-  */
+  
   public abstract boolean getRollover();
-  /**
-  * This sets the degree or other value for the position or speed of
-  * the planet to transit. It will be used on the next call to getTransit().
-  * @param value The desired offset value.
-  * @see #getOffset()
-  */
+  
   public abstract void setOffset(double value);
-  /**
-  * This returns the degree or other value of the position or speed of
-  * the planet to transit.
-  * @return The currently set offset value.
-  * @see #setOffset(double)
-  */
+  
   public abstract double getOffset();
-  /**
-  * This returns all the &quot;object identifiers s&quot; used in this
-  * TransitCalculator. It may be the planet number or planet numbers,
-  * when calculating planets.
-  * @return An array of identifiers identifying the calculated objects.
-  */
+  
   public Object[] getObjectIdentifiers() {
     return null;
   }
@@ -37456,15 +37256,10 @@ class Vedic {
 
 
 
-/**
- * This class is an example of how to calculate planets and houses in the indian
- * vedic style of astrology (jyotish).
- */
+
 class VedicTest {
 
-    /**
-     * The method to determine ayanamsha value:
-     */
+    
     private static final int SID_METHOD = SweConst.SE_SIDM_LAHIRI;
     private static final String[] signNames = { "Aries","Taurus","Gemini","Cancer","Leo","Virgo",
 						"Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"};
