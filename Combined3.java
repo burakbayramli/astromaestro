@@ -26458,7 +26458,7 @@ class VedicTest {
 
 class Swetest {
 
-    public String globalResult = ""; // OH YEAH BABY
+    public String globalResult = ""; 
     
     SwissData swed = new SwissData();
     SwissLib  sl   = new SwissLib();
@@ -28033,11 +28033,6 @@ class Swetest {
             }
         }
 
-        // such a hack that I am ashamed, but I say fuck it, I don't want to try
-        // to figure out what this code does, the interface is very very
-        // confusing, and I am no astrologist, astrologer, nor I want to become
-        // one. Never spent such a long time to get one fucking number out of a
-        // system, I swear to God.        
         globalResult = s;
         
         return(s);
