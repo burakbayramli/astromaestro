@@ -9,14 +9,13 @@ import java.util.Date;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Arrays;
 import java.text.*;  // DateFormat etc.
-import java.util.*;
 import java.net.*;
 import java.io.*;
 import java.util.StringTokenizer;
 import java.util.TimeZone;
 import java.math.*;
+
 class AyaInit {
   double t0;
   double ayan_t0;
@@ -26368,7 +26367,7 @@ class VedicTest {
 	int day = 24;
 	double longitude = 32.85646943314241;
 	double latitude = 39.941139297390365;
-	double hour = 10 + (0. / 60.) - 3; // IST
+	double hour = 9 + (0. / 60.) - 3; // IST
 				
 	SwissEph sw = new SwissEph();
 	SweDate sd = new SweDate(year, month, day, hour);
