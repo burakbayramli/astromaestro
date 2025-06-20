@@ -196,7 +196,7 @@ def get_vedic(date):
                           stdout=subprocess.PIPE)
     res = p.stdout.read().decode().strip()
     res = json.loads(res.replace("'",'"'))
-    return res['Ketu (true)'][0]
+    return res['true Node'][0]
 
    
 def gen_combined():
@@ -204,8 +204,8 @@ def gen_combined():
    s = "19000101"
    fout = open("/tmp/data-19000101.json","w")
    fout.write("[\n")
-   #for i in range(54790):
-   for i in range(3):
+   for i in range(54790):
+   #for i in range(3):
        d =  datetime.strptime(s, "%Y%m%d")
        curr = d + timedelta(days=i)
        d2 = conv(curr.strftime('%d/%m/%Y'))
