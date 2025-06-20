@@ -25,8 +25,6 @@ class AyaInit {
   }
 }
 class CFmt {
-  // public:
-  // Constructors:
   
   public CFmt() {
     this.hexByteCnt=8;
@@ -35,7 +33,6 @@ class CFmt {
   public CFmt(int hexByteCnt) {
     setHexByteCnt(hexByteCnt);
   }
-  // Public Methods: /////////////////////////////////////////////////////////
   
   public void setHexByteCnt(int hexByteCnt) {
     if (hexByteCnt==8 || hexByteCnt==4) {
@@ -46,13 +43,9 @@ class CFmt {
   public int getHexByteCnt() {
     return this.hexByteCnt;
   }
-  // Methods for conversion: /////////////////////////////////////////////////
-  // char "c":
-  
   public String fmt( String conv, char c ) {
     return fmt(conv, new Character(c).toString());
   }
-  // Strings "s":
   
   public String fmt( String conv, String s ) {
     CFmtCvt cv = new CFmtCvt(conv);
@@ -61,11 +54,11 @@ class CFmt {
     } else if (cv.type!='s') {
       return "";
     }
-    // Precision:
+
     if (cv.withPrec && cv.precision<s.length() && cv.type!='c') {
       s=s.substring(0,cv.precision);
     }
-    // MinimumFieldWidth:
+
     if (cv.minimum>320) { cv.minimum=320; }
     String padString=empty;
     if (cv.padChar=='0' && !cv.fMinus) { padString=zeros; }
@@ -78,8 +71,7 @@ class CFmt {
     }
     return s;
   }
-  // byte d,i,o,p,u,x,X:
-  
+
   public String fmt( String conv, byte bval ) {
     return intFmt(conv, (long) bval, 'b');
   }
@@ -244,8 +236,8 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
       }
     }
     return res;
-  } // double
-  // Private Methods: ////////////////////////////////////////////////////////
+  } 
+
   private String intFmt( String conv, long lval, char baseType ) {
     CFmtCvt cv = new CFmtCvt(conv);
     if (cv.type!='d' && cv.type!='i' && cv.type!='o' && cv.type!='p' &&
@@ -262,8 +254,6 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
     } else if (cv.type=='o') { // unsigned octal
       res=Long.toOctalString(lval);
       if (lval<0 && this.hexByteCnt==4 && baseType!='l') {
-        // 1 777 777 777 777 777 777 777 -> 37777777777 [         -1]
-        // 1 777 777 777 760 000 000 000 -> 20000000000 [-2147483648]
         if (res.charAt(11)=='7') {
           res="3"+res.substring(12);
         } else {
@@ -278,8 +268,6 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
       }
     } else if (cv.type=='x' || cv.type=='p' || cv.type=='X') {
                                                      // unsigned hexadecimal
-      // "p" exists ONLY as "%p" without any modifications and then seems to
-      // be identical with "%x"!
       res=Long.toHexString(lval);
       if (cv.type=='p' && (cv.withPrec || cv.withMin || cv.fMinus ||
                                     cv.fPlus || cv.fSpace || cv.fHash)) {
@@ -287,9 +275,6 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
       }
       if (this.hexByteCnt==4 && baseType!='l') { res=res.substring(8); }
     }
-    // Precision:
-    // Minimum count of digits (WITHOUT sign!). Add zeros before the number
-    // if necessary.
     if (!cv.withPrec) { cv.precision=1; }
     if (cv.precision>320) { cv.precision=320; }
     if (cv.precision>res.length()) {
@@ -312,7 +297,6 @@ res=dblToString(dval,cv.precision); // Includes rounding!!!
     } else if (cv.fHash && lval!=0 && (cv.type=='x' || cv.type=='X')) {
       prefix="0x";
     }
-    // MinimumFieldWidth:
     if (cv.minimum>320) { cv.minimum=320; }
     if (cv.withPrec) { cv.padChar=' '; }
     if (cv.padChar=='0' && !cv.fMinus) { padString=zeros; }
@@ -568,22 +552,15 @@ class Extensions {
       } else {
         pxway = lastVal<=val;
       }
-      found = (// transits from higher deg. to lower deg.:
+      found = (
                ( above && val<=offset && !pxway) ||
-               // transits from lower deg. to higher deg.:
+               
                (!above && val>=offset &&  pxway)) ||
               (tc.rollover && (
-               // transits from above the transit degree via rollover over
-               // 0 degrees to a higher degree:
                (offset<lastVal && val>340. && lastVal<20. && !pxway) ||
-               // transits from below the transit degree via rollover over
-               // 360 degrees to a lower degree:
                (offset>lastVal && val<20. && lastVal>340. &&  pxway) ||
-               // transits from below the transit degree via rollover over
-               // 0 degrees to a higher degree:
                (offset>val && val>340. && lastVal<20. && !pxway) ||
-               // transits from above the transit degree via rollover over
-               // 360 degrees to a lower degree:
+
                (offset<val && val<20. && lastVal>340. &&  pxway))
               );
       if (found) { // Return an interpolated value, but not prior to (after)
@@ -615,9 +592,6 @@ class Extensions {
       }
     }
   }
-  // The precision of a distance calculation is related to the barycentric
-  // distance
-  // E.g.: java Swetest -b1.1.0 -p0 -n100000 -fR -bary | sort -n
   protected double maxBaryDist[] = new double[] {
      0.009570999,    // 0 Sun        ==  0                   1.017545559
      1.028809521,    // 1 Moon       ==  1

@@ -1,7 +1,7 @@
-from datetime import datetime
-#import datetime
-from datetime import timedelta
-import itertools, os
+from datetime import datetime, timedelta
+from timezonefinder import TimezoneFinder
+import itertools, os, sys, subprocess, json
+from pytz import timezone, utc
 import pandas as pd
 import numpy as np
 
@@ -174,22 +174,48 @@ def calculate_cycle(d):
            total = int(res[0]) + int(res[1])
        return total
    except: return None
-    
+
+def get_vedic(date):
+    d =  datetime.strptime(date, "%Y%m%d")
+    day = "%02d" % d.day
+    mon = "%02d" % d.month
+    year = "%04d" % d.year
+    tf = TimezoneFinder() 
+    today = datetime.now()
+    tz_target = timezone(tf.certain_timezone_at(lng=10, lat=10))
+    today_target = tz_target.localize(today)
+    today_utc = utc.localize(today)
+    offset = (today_utc - today_target).total_seconds() / 3600
+    offset = str(offset)
+    print ('offset',offset)
+    pydir = os.path.dirname(os.path.abspath(__file__))    
+    # these two jars are needed for Vedic Java call
+    os.environ['CLASSPATH'] = pydir + "/astromaestro.jar:" + \
+                              pydir + "/jlewi/lib/commons-lang3-3.13.0.jar"
+    p = subprocess.Popen(['java','swisseph.Vedic',day,mon,year,"10","10","10","0"],
+                          stdout=subprocess.PIPE)
+    res = p.stdout.read().decode().strip()
+    res = json.loads(res.replace("'",'"'))
+    return res['Ketu (true)'][0]
+
+   
 def gen_combined():
 
    s = "19000101"
    fout = open("/tmp/data-19000101.json","w")
    fout.write("[\n")
-   for i in range(54790):
-   #for i in range(3):
+   #for i in range(54790):
+   for i in range(3):
        d =  datetime.strptime(s, "%Y%m%d")
        curr = d + timedelta(days=i)
        d2 = conv(curr.strftime('%d/%m/%Y'))
+       print (d2)
        res1 = calculate_millman(d2)
        res2 = get_spiller(d2)
        res3 = get_chinese(d2)
        res4 = calculate_lewi(d2)
-       line = str([res2, res3, res1, res4])
+       res5 = get_vedic(d2)
+       line = str([res2, res3, res5, res1, res4])
        line = line.replace("'",'"')
        fout.write(line)
        fout.write(',\n')
@@ -199,7 +225,11 @@ def gen_combined():
 
 
 if __name__ == "__main__":
-    res = calculate_lewi_decans([4,29,1,4,32,32,8,21,25,19])
-    print (res)    
-    #res = calculate_lewi("19730424")
-    #print (res)
+    if sys.argv[1] == "test1":
+        res = calculate_lewi_decans([4,29,1,4,32,32,8,21,25,19])
+        print (res)    
+    if sys.argv[1] == "test2":
+        res = calculate_lewi("19730424")
+        print (res)
+    if sys.argv[1] == "gen-combined":
+        gen_combined()
