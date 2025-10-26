@@ -133,11 +133,16 @@ Connect to http://localhost5000/static/index.html it will show the
 main screen for Vedic input. Make sure `astromaestro.jar` exists
 before starting the application.
 
+My own web site that demonstrates much of the reading styles explained
+above is at
+
+[https://burakbayramli.github.io/prof.html](https://burakbayramli.github.io/prof.html)
+
 References
 
 [1] Grant Lewi, *Heaven Knows What*
 
-[2] Jan Spiller, Astrology for the Soul
+[2] Jan Spiller, *Astrology for the Soul*
 
-[3] Dan Millman, Live the Life You Were Meant to Live
+[3] Dan Millman, *Live the Life You Were Meant to Live*
 
