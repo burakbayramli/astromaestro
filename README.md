@@ -133,14 +133,6 @@ Connect to http://localhost5000/static/index.html it will show the
 main screen for Vedic input. Make sure `astromaestro.jar` exists
 before starting the application.
 
-## TODO
-
-- Compiling the Java code base into Webassembly using TeaVM would be
-  great, the code would be usable through a browser, called via
-  Javascript. Currently SwissEph is in Java, therefore interfacing the
-  code via Web requires a Web server.
-
-
 References
 
 [1] Grant Lewi, *Heaven Knows What*
